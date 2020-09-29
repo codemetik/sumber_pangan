@@ -1,0 +1,56 @@
+
+#customers {
+  font-family: "calibri", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #808080; /*garis tabel*/
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){
+  background-color: #C0C0C0; /*warna row baris ke 2 dalam tabel*/
+}
+
+#customers tr:hover {background-color: #DCDCDC;} /*warna row baris ke 1 dalam tabel*/
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #808080; /*warna kepala tabel*/
+  color: white;
+}
+.pilih{
+  float: center;
+}
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #808080; /*warna garis bawah pada tulisan edit*/
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  max-width: 100%;
+  background-color:#808080; /*warna button*/
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #A9A9A9; /*warna button saat ditekan*/
+}
+.hapus{
+  background-color: #808080;
+}
+}
