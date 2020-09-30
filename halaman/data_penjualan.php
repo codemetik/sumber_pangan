@@ -1,3 +1,8 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active" aria-current="page">Data Penjualan</li>
+  </ol>
+</nav>
 <div class="data_barang">
 	<a href="halaman/barang_keluar/input_barang_jual.php"><input type="submit" value="Tambah Penjualan" class="btn bg-primary"></a>
 <br>

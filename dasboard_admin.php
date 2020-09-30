@@ -114,10 +114,10 @@
           </div>
         </nav>
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-	<div class="judul">
+	<!-- <div class="judul">
 		<center><h1>Selamat Datang di Toko Sumber Pangan</h1></center>
 		<justify><h3>Toko Sumber pangan adalah toko beras terlengkap dan termurah yang menyediakan berbagai jenis beras</h3></justify>
-	</div>
+	</div> -->
 
 <?php 
 if (isset($_GET['page'])) {

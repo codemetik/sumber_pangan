@@ -98,10 +98,10 @@ if ($tambah<10) {
 </nav>
 <br>
 <div class="container mt-5">
-	<div class="card">
+	<div class="card bg-dark">
 		<div class="card-header bg-info">
 			<center><h2><u>Masukan Transaksi Penjualan Anda</u></h2></center>
-	<br>
+			
 		</div>
 		<div class="card-body bg-dark">
 		<form action="proses_jual.php" method="post" enctype="multipart/form-data" style="color:#FFFFFF">

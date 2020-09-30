@@ -1,3 +1,8 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active" aria-current="page">Data Pembelian</li>
+  </ol>
+</nav>
 <div class="data_barang">
 	<a href="halaman/barang_masuk/input_barang.php"><input type="submit" value="Tambah Pembelian" class="btn bg-primary"></a>
 <br>
@@ -29,7 +34,7 @@ JOIN tb_transaksi Z ON Y.id_barang = Z.id_barang")or die(mysqli_error());
 		<td><?php echo $data['brg_masuk']; ?></td>
 		<td><?php echo $data['Total']; ?></td>
 		<td class="pilih">
-		<a href="halaman/barang_masuk/delete_masuk.php?id_transaksi=<?= $data['id_transaksi']; ?>">
+		<a href="halaman/barang_masuk/delete_masuk.php?id_transaksi=<?= $data['id_transaksi']; ?>" onclick="return confirm('Apakah anda yakin ingin data ini?')">
 			<button class="btn bg-primary"><i class="fa fa-trash-alt"></i> Delete</button></a>
 		</td>
 	</tr>

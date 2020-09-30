@@ -1,3 +1,7 @@
+<div class="judul">
+		<center><h1>Selamat Datang di Toko Sumber Pangan</h1></center>
+		<justify><h3>Toko Sumber pangan adalah toko beras terlengkap dan termurah yang menyediakan berbagai jenis beras</h3></justify>
+	</div>
 <div class="data_barang">
 <br>
 <a href="input.php"><input type="submit" value="Tambah Barang Baru" class="btn bg-primary"></a>
