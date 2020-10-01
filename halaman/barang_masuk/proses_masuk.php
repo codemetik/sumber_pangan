@@ -14,7 +14,7 @@ $query = "INSERT INTO tb_transaksi(id_transaksi, tanggal, id_barang, nama_barang
 $sql = mysqli_query($koneksi, $query);
 if ($sql) {
 	echo "<script>alert('Data berhasil di upload !'); history.go(-1);</script>";
-	header("location:../../dasboard_admin.php?page=pembelian");
+	header("location:../../index2.php?page=pembelian");
 }else{
 	echo "<script>alert('Data gagal di upload !'); history.go(-1);</script>";
 }

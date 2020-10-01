@@ -20,6 +20,6 @@ if ($result>0) {
 	header("location:index.php?pesan=gagal");
 }
 }else{
-	echo "Email Dan password Tidak Boleh Kosong, Silahkan Di isi";
+	echo "<p style='color:red;'>Email Dan password Tidak Boleh Kosong, <a href='index.php' style='color:blue;'>Klik Untuk Kembali</a></p>";
 }
 ?>
