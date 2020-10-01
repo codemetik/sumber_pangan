@@ -1,8 +1,9 @@
-<nav aria-label="breadcrumb">
+<div class="col-sm-12 mt-2">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item active" aria-current="page">Laporan Barang Masuk</li>
+    <li class="breadcrumb-item"><a href="#">Laporan</a></li>
+    <li class="breadcrumb-item active">Laporan Barang Masuk</li>
   </ol>
-</nav>
+</div><!-- /.col -->
 <div class="table-responsive">
     <table class="table table-bordered table-hover font-12">
 <thead class="thead-dark">

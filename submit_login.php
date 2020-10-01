@@ -11,7 +11,11 @@ $result = mysqli_num_rows($sql);
 if ($result>0) {
 	$_SESSION['username']=$user;
 	$_SESSION['status']="login";
-	header("location:dasboard_admin.php");
+	// header("location:dasboard_admin.php");
+	echo "<script>
+	alert('Berhasil Login');
+	document.location.href = 'index2.php';
+	</script>";
 }else{
 	header("location:index.php?pesan=gagal");
 }

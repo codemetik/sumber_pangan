@@ -1,8 +1,9 @@
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item active" aria-current="page">Data Penjualan</li>
-  </ol>
-</nav>
+<div class="col-sm-12 mt-2">
+	<ol class="breadcrumb">
+	  <li class="breadcrumb-item"><a href="#">Data Barang</a></li>
+	  <li class="breadcrumb-item active">Data Penjualan</li>
+	</ol>
+</div><!-- /.col -->
 <div class="data_barang">
 	<a href="halaman/barang_keluar/input_barang_jual.php"><input type="submit" value="Tambah Penjualan" class="btn bg-primary"></a>
 <br>
