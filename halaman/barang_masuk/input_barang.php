@@ -18,25 +18,25 @@ if ($tambah<10) {
 		<div class="card-body">
 			<form action="halaman/barang_masuk/proses_masuk.php" method="post" enctype="multipart/form-data">
 			<div class="row">
-				<div class="col-sm-6">
+				<div class="col-sm-4">
 					<div class="form-group">
 						<label>ID Transaksi</label>
 						<input type="text" name="id" class="form-control" value="<?php echo $id; ?>" readonly>
 					</div>
 					<div class="form-group">
 						<label>Tanggal</label>
-						<input type="text" name="tanggal" class="form-control" value="<?php echo "". date("Y-m-d"); ?>">
+						<input type="text" name="tanggal" class="form-control" value="<?php echo "". date("Y-m-d"); ?>" readonly>
 					</div>
 					<div class="form-group">
 						<label>ID Barang</label>
-						<select name="id_barang" class="form-control" onchange='changeValue(this.value)' required>
-								<option value="">===Pilih===</option>
+						<select name="id_barang" class="form-control-sm select2" style="width: 100%;" onchange='changeValue(this.value)' required>
+								<option>===Pilih===</option>
 								 <?php 
 								 $query=mysqli_query($koneksi, "SELECT  * FROM barang order by id_barang asc"); 
 								 $result = mysqli_query($koneksi, "SELECT * FROM barang");  
 								 $jsArray = "var prdName = new Array();\n";
 								 while ($row = mysqli_fetch_array($result)) {  
-								 echo '<option name="id_barang"  value="' . $row['id_barang'] . '">' . $row['id_barang'] . '</option>';  
+								 echo '<option name="id_barang"  value="' . $row['id_barang'] . '">' . $row['id_barang'] .' '. $row['nama']. '</option>';  
 								 $jsArray .= "prdName['" . $row['id_barang'] . "'] = {nama:'" . addslashes($row['nama'])."', stok:'" . addslashes($row['stok'])."', harga:'" . addslashes($row['harga'])."'};\n";
 								  }
 								  ?>
@@ -55,15 +55,32 @@ if ($tambah<10) {
 						<input type="text" name="harga" id="harga" class="form-control" readonly>
 					</div>
 				</div>
-				<div class="col-sm-6">
+				<div class="col-sm-4">
 					<div class="form-group">
 						<label>Jumlah Barang Masuk</label>
-						<input type="text" name="masuk" id="masuk" class="form-control" onchange="total()">
+						<input type="text" name="masuk" id="masuk" class="form-control" onkeyup="total()">
 					</div>
 					<div class="form-group">
 						<label>Total : </label>
 						<input type="text" name="hasil" id="hasil" class="form-control" readonly>
 					</div>
+				</div>
+				<div class="card col-sm-4 bg-primary p-3" style="height: 150px;">
+					<center><h5>Tentukan Supplier</h5></center>
+					<div class="form-group">
+						<label>Supplier</label>
+						<select class="form-control-sm select2" name="id_supplier" style="width: 100%;" required>
+							<option value="">==Pilih==</option>
+						<?php 
+						$s = mysqli_query($koneksi, "SELECT * FROM tb_supplier");
+						while ($ds = mysqli_fetch_array($s)) { ?>
+							<option value="<?= $ds['id_supplier']; ?>"><?= $ds['nama_supplier']; ?></option>
+						<?php }
+						?>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-12">
 					<div class="form-group">
 						<button type="submit" name="simpan" class="btn bg-primary col-sm-12"><i class="fa fa-save"></i> SIMPAN</button>
 					</div>

@@ -7,9 +7,12 @@ $pass = md5($_POST['password']);
 if (!empty($user) && !empty($pass)) {
 $query = "SELECT * FROM admin WHERE username='$user' AND password='$pass'";
 $sql = mysqli_query($koneksi, $query);
+$us = mysqli_fetch_array($sql);
 $result = mysqli_num_rows($sql);
 if ($result>0) {
-	$_SESSION['username']=$user;
+	$usr = $us['username'];
+
+	$_SESSION['username']=$usr;
 	$_SESSION['status']="login";
 	// header("location:dasboard_admin.php");
 	echo "<script>

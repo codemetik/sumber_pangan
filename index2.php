@@ -1,3 +1,11 @@
+<?php 
+session_start();
+
+if (!isset($_SESSION['username'])) {
+  header('location:index.php');
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +23,9 @@
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <!-- Select2 -->
+  <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
@@ -46,9 +57,9 @@
   <aside class="main-sidebar sidebar-dark-primary bg-white elevation-4">
     <!-- Brand Logo -->
     <a href="?page=home" class="brand-link">
-      <img src="img/sp_logo.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+      <img src="img/logo_pbu.jpeg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
-      <span class="brand-text font-weight-light text-white">Sumber Pangan</span>
+      <span class="brand-text font-weight-light text-white"><b>PT. PURNAMAJAYA BHAKTI UTAMA</b></span>
     </a>
 
     <!-- Sidebar -->
@@ -73,6 +84,29 @@
               <i class="nav-icon fas fa-home"></i>
               <p>Home</p>
             </a>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link bg-blue">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                Kontak
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item bg-dark">
+                <a href="?page=supplier" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Data Supplier</p>
+                </a>
+              </li>
+              <li class="nav-item bg-dark">
+                <a href="?page=customer" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Data Customer</p>
+                </a>
+              </li>
+            </ul>
           </li>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link bg-blue">
@@ -155,7 +189,7 @@
 
     <!-- Main content -->
     <section class="content">
-      <div class="container-fluid">
+      <div class="container-fluid pt-2">
         <?php 
 if (isset($_GET['page'])) {
   $page = $_GET['page'];
@@ -193,8 +227,29 @@ if (isset($_GET['page'])) {
     case 'inputDataBaruPembelian':
       include "halaman/barang_masuk/input_barang.php";
       break;
+    case 'editPembelian':
+      include "halaman/barang_masuk/edit_pembelian.php";
+      break;
     case 'inputDataBaruPenjualan':
       include "halaman/barang_keluar/input_barang_jual.php";
+      break;
+    case 'editPenjualan':
+      include "halaman/barang_keluar/edit_penjualan.php";
+      break;
+    case 'supplier':
+      include "halaman/supplier/hal_supplier.php";
+      break;
+    case 'customer':
+      include "halaman/customer/hal_customer.php";
+      break;
+    case 'inputSupplier':
+      include "halaman/supplier/input_supplier.php";
+      break;
+    case 'updateSupplier':
+      include "halaman/supplier/update_supplier.php";
+      break;
+    case 'updateCustomer':
+      include "halaman/customer/update_customer.php";
       break;
     default:
       echo "<center><h1>Halaman tidak ada</h1</center>";
@@ -246,5 +301,15 @@ if (isset($_GET['page'])) {
 
 <!-- PAGE SCRIPTS -->
 <script src="dist/js/pages/dashboard2.js"></script>
+<script src="plugins/select2/js/select2.min.js"></script>
+<script>
+$(function () {
+    $('.select2').select2()
+
+    $('.select2bs4').select2({
+      theme: 'bootstrap4'
+    })
+})
+</script>
 </body>
 </html>

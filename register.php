@@ -21,7 +21,8 @@
 <body class="hold-transition login-page pb-5">
 	<div class="login-box">
 	<div class="login-logo">
-	    <a href="index2.php"><b>Register Baru USER </b>SUMBER PANGAN</a>
+		<center><img src="img/logo pbu1.jpeg" width="130" height="50" alt=""></center>
+	    <a href="index2.php"><b><h4>USER REGISTRATION</h4></b></a>
 	</div>
 	<div class="card">
 		<div class="card-body login-card-body">

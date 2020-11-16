@@ -1,3 +1,6 @@
+<?php 
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,12 +35,13 @@
 		}
 	}
 	?>
+	<center><img src="img/logo pbu1.jpeg" width="130" height="50" alt=""></center>
 	<div class="login-logo">
-	    <a href="index2.php"><b>Selamat Datang di Toko </b>SUMBER PANGAN</a>
+	    <a href="index2.php"><b><h5>PT. PURNAMAJAYA BHAKTI UTAMA</h5></b></a>
 	 </div>
 	<div class="card">
 	<div class="card-body login-card-body">
-		<p class="login-box-msg">Silahkan Login Untuk memulai Session</p>
+		<p class="login-box-msg">Login to see more</p>
 		<form action="submit_login.php" method="post" style="color:#FFFFFF">
 			<div class="input-group mb-3">
 				<input class="form-control" type="text" name="username">

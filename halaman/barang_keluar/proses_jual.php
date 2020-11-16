@@ -10,9 +10,17 @@ $id_brg = $_POST['id_barang'];
 $nm = $_POST['nama'];
 $msk = $_POST['keluar'];
 
+$id_customer = $_POST['id_customer'];
+$nama_customer = $_POST['nama_customer'];
+$no_telp = $_POST['no_telp'];
+$alamat = $_POST['alamat'];
+
 $query = "INSERT INTO tb_transaksi_jual(id_jual, tanggal, id_barang, nama_barang, brg_keluar) VALUES('$id','$tgl','$id_brg','$nm','$msk')";
 $sql = mysqli_query($koneksi, $query);
-if ($sql) {
+
+$sup = mysqli_query($koneksi, "INSERT INTO tb_customer(id_customer, nama_customer, no_telp, alamat) VALUES('$id_customer','$nama_customer','$no_telp','$alamat')");
+
+if ($sql && $sup) {
 	echo "<script>alert('Data berhasil di upload !'); history.go(-1);</script>";
 	header("location:../../index2.php?page=penjualan");
 }else{
