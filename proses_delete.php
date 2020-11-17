@@ -3,9 +3,9 @@
 include "koneksi.php";
 
 $id = $_GET['id'];
-$query = "SELECT * FROM barang WHERE id_barang='".$id."'";
-$sql = mysqli_query($koneksi, $query);
-$data = mysqli_fetch_array($sql);
+// $query = "SELECT * FROM barang WHERE id_barang='".$id."'";
+// $sql = mysqli_query($koneksi, $query);
+// $data = mysqli_fetch_array($sql);
 
 $query2 = "DELETE FROM barang WHERE id_barang='".$id."'";
 $sql2 = mysqli_query($koneksi,$query2);

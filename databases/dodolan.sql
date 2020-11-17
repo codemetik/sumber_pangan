@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 30 Sep 2020 pada 16.23
+-- Waktu pembuatan: 17 Nov 2020 pada 01.26
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.4.9
 
@@ -48,7 +48,11 @@ INSERT INTO `admin` (`id_admin`, `nama`, `username`, `password`) VALUES
 (9, '', 'jayanti', 'e10adc3949ba59abbe56e057f20f883e'),
 (10, '', 'admin', '21232f297a57a5a743894a0e4a801fc3'),
 (11, '', 'windi', '4e3ccde7dc705b1abcce17019905279b'),
-(12, '', 'admin2020', '4441e5d70b3657900fa57e66db407e0b');
+(12, '', 'admin2020', '4441e5d70b3657900fa57e66db407e0b'),
+(16, '', 'andi', 'ce0e5bf55e4f71749eade7a8b95c4e46'),
+(17, '', 'andi', 'ce0e5bf55e4f71749eade7a8b95c4e46'),
+(18, '', 'andi', 'ce0e5bf55e4f71749eade7a8b95c4e46'),
+(19, '', 'admin', '21232f297a57a5a743894a0e4a801fc3');
 
 -- --------------------------------------------------------
 
@@ -61,30 +65,36 @@ CREATE TABLE `barang` (
   `nama` varchar(225) NOT NULL,
   `jenis` varchar(225) NOT NULL,
   `stok` int(225) NOT NULL,
-  `harga` int(20) NOT NULL
+  `harga` int(20) NOT NULL,
+  `harga_jual` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `barang`
 --
 
-INSERT INTO `barang` (`id_barang`, `nama`, `jenis`, `stok`, `harga`) VALUES
-('K0001', 'Beras Raja Lele', 'Premium', 10, 55000),
-('K0002', 'Beras Pandan Wangi', 'Premium', 20, 60000),
-('K0003', 'Beras Idola', 'Super', 20, 75000),
-('K0004', 'Beras Si Pulen', 'Premium', 20, 65000),
-('K0005', 'Beras Maknyus', 'Super', 20, 70000),
-('K0006', 'Beras Sania', 'Premium', 25, 50000),
-('K0007', 'Beras BMW', 'Under Premium', 20, 40000),
-('K0008', 'Beras Cap Bunga', 'Under Premium', 20, 30000),
-('K0009', 'Beras Sumo', 'Premium', 20, 65000),
-('K0010', 'Beras Organik Nusa', 'Under Premium', 20, 35000),
-('K0011', 'Beras Idola', 'Super', 10, 75000),
-('K0012', 'Beras Ngawiti Mas', 'Premium', 20, 65000),
-('K0013', 'Beras Ramos', 'Super', 20, 70000),
-('K0014', 'Beras Topi Koki', 'Super', 20, 85000),
-('K0015', 'Beras Hotel', 'Super', 20, 80000),
-('K0016', 'Beras Panen', 'Super', 20, 60000);
+INSERT INTO `barang` (`id_barang`, `nama`, `jenis`, `stok`, `harga`, `harga_jual`) VALUES
+('K0001', 'Beras Raja Lele', 'Premium', 32, 55000, 60000),
+('K0002', 'Beras Pandan Wangi', 'Premium', 31, 60000, 65000),
+('K0003', 'Beras Idola', 'Super', 21, 75000, 80000),
+('K0004', 'Beras Si Pulen', 'Premium', 18, 65000, 70000),
+('K0005', 'Beras Maknyus', 'Super', 20, 70000, 75000),
+('K0006', 'Beras Sania', 'Premium', 20, 50000, 55000),
+('K0007', 'Beras BMW', 'Under Premium', 14, 40000, 45000),
+('K0008', 'Beras Cap Bunga', 'Under Premium', 20, 30000, 35000),
+('K0009', 'Beras Sumo', 'Premium', 20, 65000, 70000),
+('K0010', 'Beras Organik Nusa', 'Under Premium', 5, 35000, 40000),
+('K0011', 'Beras Idola', 'Super', 20, 75000, 80000),
+('K0012', 'Beras Ngawiti Mas', 'Premium', 20, 65000, 70000),
+('K0013', 'Beras Ramos', 'Super', 20, 70000, 75000),
+('K0014', 'Beras Topi Koki', 'Super', 28, 85000, 90000),
+('K0015', 'Beras Hotel', 'Super', 20, 80000, 85000),
+('K0016', 'Beras Panen', 'Super', 20, 60000, 65000),
+('K0017', 'Beras andalan', 'Rombeng', 40, 50000, 55000),
+('K0018', 'Kebuli', 'Buli', 30, 45000, 50000),
+('K0019', 'buli', 'kebul', 20, 100000, 105000),
+('K0020', 'Buli keb', 'kebul-kebul', 22, 32000, 34000),
+('K0021', 'Balibul', 'Bali', 30, 15000, 20000);
 
 --
 -- Trigger `barang`
@@ -100,35 +110,93 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_harga`
+-- Struktur dari tabel `tb_customer`
 --
 
-CREATE TABLE `tb_harga` (
-  `id_harga` char(20) NOT NULL,
-  `harga_beli` int(20) NOT NULL,
-  `harga_jual` int(20) NOT NULL,
-  `id_barang` char(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE `tb_customer` (
+  `id_customer` char(15) NOT NULL,
+  `nama_customer` varchar(50) NOT NULL,
+  `no_telp` varchar(15) NOT NULL,
+  `alamat` varchar(225) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `tb_harga`
+-- Dumping data untuk tabel `tb_customer`
 --
 
-INSERT INTO `tb_harga` (`id_harga`, `harga_beli`, `harga_jual`, `id_barang`) VALUES
-('H001', 40000, 55000, 'K0001'),
-('H002', 45000, 60000, 'K0002'),
-('H003', 60000, 75000, 'K0003'),
-('H004', 50000, 65000, 'K0004'),
-('H005', 55000, 70000, 'K0005'),
-('H006', 35000, 50000, 'K0006'),
-('H007', 25000, 40000, 'K0007'),
-('H008', 15000, 30000, 'K0008'),
-('H009', 50000, 65000, 'K0009'),
-('H010', 20000, 35000, 'K0010'),
-('H011', 60000, 75000, 'K0011'),
-('H012', 50000, 65000, 'K0012'),
-('H013', 55000, 70000, 'K0013'),
-('H014', 65000, 80000, 'K0014');
+INSERT INTO `tb_customer` (`id_customer`, `nama_customer`, `no_telp`, `alamat`) VALUES
+('CS001', 'Dandi Boy', '08977777777', 'tangerang');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tb_rols_customer`
+--
+
+CREATE TABLE `tb_rols_customer` (
+  `no` int(15) NOT NULL,
+  `id_customer` char(15) NOT NULL,
+  `id_jual` char(15) NOT NULL,
+  `id_barang` char(15) NOT NULL,
+  `tgl` varchar(225) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tb_rols_customer`
+--
+
+INSERT INTO `tb_rols_customer` (`no`, `id_customer`, `id_jual`, `id_barang`, `tgl`) VALUES
+(1, 'CS002', 'P010', 'K0020', '2020-11-16'),
+(2, 'CS003', 'P009', 'K0020', '2020-11-16'),
+(3, 'CS004', 'P010', 'K0020', '2020-11-16'),
+(4, 'CS005', 'P001', 'K0020', '2020-11-17'),
+(5, 'CS001', 'P001', 'K0021', '2020-11-17');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tb_rols_supplier`
+--
+
+CREATE TABLE `tb_rols_supplier` (
+  `no` int(15) NOT NULL,
+  `id_supplier` char(15) NOT NULL,
+  `id_transaksi` char(15) NOT NULL,
+  `id_barang` char(15) NOT NULL,
+  `tgl` varchar(225) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tb_rols_supplier`
+--
+
+INSERT INTO `tb_rols_supplier` (`no`, `id_supplier`, `id_transaksi`, `id_barang`, `tgl`) VALUES
+(3, 'SUP0001', 'T001', 'K0001', '2020-11-17'),
+(4, 'SUP0002', 'T002', 'K0002', '2020-11-17'),
+(5, 'SUP0001', 'T003', 'K0003', '2020-11-17'),
+(6, 'SUP0002', 'T004', 'K0004', '2020-11-17'),
+(7, 'SUP0002', 'T005', 'K0020', '2020-11-17');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tb_supplier`
+--
+
+CREATE TABLE `tb_supplier` (
+  `id_supplier` char(15) NOT NULL,
+  `nama_supplier` varchar(50) NOT NULL,
+  `no_telp` varchar(15) NOT NULL,
+  `alamat` varchar(225) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tb_supplier`
+--
+
+INSERT INTO `tb_supplier` (`id_supplier`, `nama_supplier`, `no_telp`, `alamat`) VALUES
+('SUP0001', 'Dedek', '08977777777', 'Pamulang'),
+('SUP0002', 'Andy', '089565656878', 'Tangerang');
 
 -- --------------------------------------------------------
 
@@ -149,12 +217,11 @@ CREATE TABLE `tb_transaksi` (
 --
 
 INSERT INTO `tb_transaksi` (`id_transaksi`, `tanggal`, `id_barang`, `nama_barang`, `brg_masuk`) VALUES
-('T001', '2019-06-03', 'K0002', 'Beras Pandan Wangi', 2),
-('T002', '2019-06-06', 'K0003', 'Beras Idola', 3),
-('T003', '2019-06-14', 'K0004', 'Beras Si Pulen', 5),
-('T004', '2019-06-16', 'K0007', 'Beras BMW', 6),
-('T005', '2019-06-19', 'K0010', 'Beras Organik Nusa', 15),
-('T006', '2019-06-30', 'K0006', 'Beras Sania', 5);
+('T001', '2020-11-17', 'K0001', 'Beras Raja Lele', 2),
+('T002', '2020-11-17', 'K0002', 'Beras Pandan Wangi', 3),
+('T003', '2020-11-17', 'K0003', 'Beras Idola', 4),
+('T004', '2020-11-17', 'K0004', 'Beras Si Pulen', 3),
+('T005', '2020-11-17', 'K0020', 'Buli keb', 2);
 
 --
 -- Trigger `tb_transaksi`
@@ -166,8 +233,20 @@ CREATE TRIGGER `batal_trx` AFTER DELETE ON `tb_transaksi` FOR EACH ROW BEGIN
 $$
 DELIMITER ;
 DELIMITER $$
+CREATE TRIGGER `delete_rols_supplier` AFTER DELETE ON `tb_transaksi` FOR EACH ROW BEGIN
+	delete from tb_rols_supplier where id_transaksi = old.id_transaksi;
+    END
+$$
+DELIMITER ;
+DELIMITER $$
 CREATE TRIGGER `tambah_beli_trx` AFTER INSERT ON `tb_transaksi` FOR EACH ROW BEGIN
 	UPDATE barang SET stok = stok + new.brg_masuk WHERE id_barang=new.id_barang;
+    END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `update_trx_pembelian` AFTER UPDATE ON `tb_transaksi` FOR EACH ROW BEGIN
+	update barang set stok = stok - old.brg_masuk + new.brg_masuk where id_barang = new.id_barang;
     END
 $$
 DELIMITER ;
@@ -191,10 +270,7 @@ CREATE TABLE `tb_transaksi_jual` (
 --
 
 INSERT INTO `tb_transaksi_jual` (`id_jual`, `tanggal`, `id_barang`, `nama_barang`, `brg_keluar`) VALUES
-('P001', '2019-06-03', 'K0002', 'Beras Pandan Wangi', 10),
-('P002', '2019-06-17', 'K0001', 'Beras OrganikNusa', 20),
-('P003', '2019-06-18', 'K0014', 'Beras BMW', 8),
-('P004', '2019-06-29', 'K0011', 'Beras Idola', 10);
+('P001', '2020-11-17', 'K0021', 'Balibul', 2);
 
 --
 -- Trigger `tb_transaksi_jual`
@@ -206,34 +282,23 @@ CREATE TRIGGER `batal_jual_trx` AFTER DELETE ON `tb_transaksi_jual` FOR EACH ROW
 $$
 DELIMITER ;
 DELIMITER $$
+CREATE TRIGGER `delete_rols_customer` AFTER DELETE ON `tb_transaksi_jual` FOR EACH ROW BEGIN
+	delete from tb_transaksi_jual where id_jual = old.id_jual;
+    END
+$$
+DELIMITER ;
+DELIMITER $$
 CREATE TRIGGER `kurang_jual_trx` AFTER INSERT ON `tb_transaksi_jual` FOR EACH ROW BEGIN
 	update barang set stok = stok - new.brg_keluar where id_barang = new.id_barang;
     END
 $$
 DELIMITER ;
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `user`
---
-
-CREATE TABLE `user` (
-  `id_user` int(15) NOT NULL,
-  `username` varchar(225) NOT NULL,
-  `password` varchar(225) NOT NULL,
-  `nama` varchar(225) NOT NULL,
-  `inbox` text NOT NULL,
-  `saldo` int(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data untuk tabel `user`
---
-
-INSERT INTO `user` (`id_user`, `username`, `password`, `nama`, `inbox`, `saldo`) VALUES
-(1, 'admin', 'windijayanti', '', '', 0),
-(2, 'windi', '111111', '', '', 0);
+DELIMITER $$
+CREATE TRIGGER `update_trx_penjualan` AFTER UPDATE ON `tb_transaksi_jual` FOR EACH ROW BEGIN
+	update barang set stok = stok - old.brg_keluar + new.brg_keluar where id_barang = new.id_barang;
+    END
+$$
+DELIMITER ;
 
 --
 -- Indexes for dumped tables
@@ -252,11 +317,32 @@ ALTER TABLE `barang`
   ADD PRIMARY KEY (`id_barang`);
 
 --
--- Indeks untuk tabel `tb_harga`
+-- Indeks untuk tabel `tb_customer`
 --
-ALTER TABLE `tb_harga`
-  ADD PRIMARY KEY (`id_harga`),
-  ADD KEY `harga_barang` (`id_barang`);
+ALTER TABLE `tb_customer`
+  ADD PRIMARY KEY (`id_customer`);
+
+--
+-- Indeks untuk tabel `tb_rols_customer`
+--
+ALTER TABLE `tb_rols_customer`
+  ADD PRIMARY KEY (`no`),
+  ADD KEY `id_customer` (`id_customer`),
+  ADD KEY `id_jual` (`id_jual`,`id_barang`);
+
+--
+-- Indeks untuk tabel `tb_rols_supplier`
+--
+ALTER TABLE `tb_rols_supplier`
+  ADD PRIMARY KEY (`no`),
+  ADD KEY `id_supplier` (`id_supplier`),
+  ADD KEY `id_transaksi` (`id_transaksi`,`id_barang`);
+
+--
+-- Indeks untuk tabel `tb_supplier`
+--
+ALTER TABLE `tb_supplier`
+  ADD PRIMARY KEY (`id_supplier`);
 
 --
 -- Indeks untuk tabel `tb_transaksi`
@@ -274,12 +360,6 @@ ALTER TABLE `tb_transaksi_jual`
   ADD KEY `id_barang` (`id_barang`);
 
 --
--- Indeks untuk tabel `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id_user`);
-
---
 -- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
@@ -287,35 +367,35 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id_admin` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_admin` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
--- AUTO_INCREMENT untuk tabel `user`
+-- AUTO_INCREMENT untuk tabel `tb_rols_customer`
 --
-ALTER TABLE `user`
-  MODIFY `id_user` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `tb_rols_customer`
+  MODIFY `no` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT untuk tabel `tb_rols_supplier`
+--
+ALTER TABLE `tb_rols_supplier`
+  MODIFY `no` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Ketidakleluasaan untuk tabel `tb_harga`
---
-ALTER TABLE `tb_harga`
-  ADD CONSTRAINT `harga_barang` FOREIGN KEY (`id_barang`) REFERENCES `barang` (`id_barang`);
-
---
 -- Ketidakleluasaan untuk tabel `tb_transaksi`
 --
 ALTER TABLE `tb_transaksi`
-  ADD CONSTRAINT `tb_transaksi_ibfk_1` FOREIGN KEY (`id_barang`) REFERENCES `barang` (`id_barang`);
+  ADD CONSTRAINT `tb_transaksi_ibfk_1` FOREIGN KEY (`id_barang`) REFERENCES `barang` (`id_barang`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `tb_transaksi_jual`
 --
 ALTER TABLE `tb_transaksi_jual`
-  ADD CONSTRAINT `relasi_jual` FOREIGN KEY (`id_barang`) REFERENCES `barang` (`id_barang`);
+  ADD CONSTRAINT `relasi_jual` FOREIGN KEY (`id_barang`) REFERENCES `barang` (`id_barang`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

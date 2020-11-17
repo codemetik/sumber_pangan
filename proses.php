@@ -9,8 +9,9 @@ $nm = $_POST['name'];
 $jns = $_POST['jenis'];
 $stk = $_POST['stok'];
 $hrg = $_POST['harga'];
+$harga_jual = $_POST['harga_jual'];
 
-$query = "INSERT INTO barang(id_barang, nama, jenis, stok, harga) VALUES('$id','$nm','$jns', $stk,'$hrg')";
+$query = "INSERT INTO barang(id_barang, nama, jenis, stok, harga, harga_jual) VALUES('$id','$nm','$jns', $stk,'$hrg','$harga_jual')";
 $sql = mysqli_query($koneksi, $query);
 if ($sql) {
 	echo "<script>alert('Data berhasil di upload !'); history.go(-1);</script>";

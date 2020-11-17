@@ -69,7 +69,7 @@ if ($custom<10) {
 			<div class="col-sm-4">
 				<div class="form-group">
 					<label>Jumlah Barang Keluar</label>
-					<input type="text" name="keluar" class="form-control" id="keluar" onkeyup="total()">
+					<input type="text" name="keluar" class="form-control" id="keluar" onkeyup="total()" required>
 				</div>
 				<div class="form-group">
 					<label>Total :</label>

@@ -32,6 +32,29 @@ $dt = mysqli_fetch_array($sql);
 						<a href="index2.php?page=supplier" class="btn bg-blue">Cencel</a>
 					</div>
 				</div>
+				<div class="col-sm-6">
+					<div class="table-responsive">
+						<table class="table table-hover table-bordered">
+							<thead class="bg-blue">
+								<tr>
+									<td>ID Barang</td>
+									<td>Nama Barang</td>
+								</tr>
+							</thead>
+							<tbody>
+							<?php 
+							$b = mysqli_query($koneksi, "SELECT * FROM tb_rols_supplier X INNER JOIN barang Y ON y.id_barang = x.id_barang WHERE id_supplier = '".$dt['id_supplier']."' GROUP BY x.id_barang");
+							while ($db = mysqli_fetch_array($b)) { ?>
+								<tr>
+									<td><?= $db['id_barang']; ?></td>
+									<td><?= $db['nama']; ?></td>
+								</tr>
+							<?php }
+							?>
+							</tbody>
+						</table>
+					</div>
+				</div>
 			</div>
 		</form>
 	</div>

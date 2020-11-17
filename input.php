@@ -23,34 +23,38 @@ if ($tambah<10) {
 			<div class="table-responsive">
 				<table class="table table-bordered table-hover font-12">
 					<tr>
-						<th>ID Barang</th>
+						<th class="bg-primary">ID Barang</th>
 						<td>
 							<input type="text" name="id" class="form-control" value="<?php echo $id; ?>" readonly>
 						</td>
 					</tr>
 					<tr>
-						<th>Nama Barang</th>
+						<th class="bg-primary">Nama Barang</th>
 						<td>
 							<input type="text" class="form-control" name="name" placeholder="Nama barang . . .">
 						</td>
 					</tr>
 					<tr>
-						<th>Jenis</th>
+						<th class="bg-primary">Jenis</th>
 						<td>
 							<input type="text" class="form-control" name="jenis" placeholder="Jenis . . .">
 						</td>
 					</tr>
 					<tr>
-						<th>Stok</th>
+						<th class="bg-primary">Stok</th>
 						<td>
 							<input type="text" class="form-control" name="stok" placeholder="Stok . . .">
 						</td>
 					</tr>
 					<tr>
-						<th>Harga</th>
+						<th class="bg-primary">Harga</th>
 						<td>
-							<input type="text"class="form-control" name="harga" placeholder="Harga . . .">
+							<input type="text" class="form-control" name="harga" placeholder="Harga . . .">
 						</td>
+					</tr>
+					<tr>
+						<th class="bg-primary">Harga Jual</th>
+						<td><input type="text" name="harga_jual" class="form-control" placeholder="harga jual . . ."></td>
 					</tr>
 				</table>			
 			</div>

@@ -20,7 +20,9 @@ $sql = mysqli_query($koneksi, $query);
 
 $sup = mysqli_query($koneksi, "INSERT INTO tb_customer(id_customer, nama_customer, no_telp, alamat) VALUES('$id_customer','$nama_customer','$no_telp','$alamat')");
 
-if ($sql && $sup) {
+$cus_rol = mysqli_query($koneksi, "INSERT INTO tb_rols_customer(id_customer,id_jual, id_barang, tgl) VALUES('$id_customer','$id','$id_brg','$tgl')");
+
+if ($sql && $sup && $cus_rol) {
 	echo "<script>alert('Data berhasil di upload !'); history.go(-1);</script>";
 	header("location:../../index2.php?page=penjualan");
 }else{

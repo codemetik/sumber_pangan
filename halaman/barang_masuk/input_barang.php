@@ -58,7 +58,7 @@ if ($tambah<10) {
 				<div class="col-sm-4">
 					<div class="form-group">
 						<label>Jumlah Barang Masuk</label>
-						<input type="text" name="masuk" id="masuk" class="form-control" onkeyup="total()">
+						<input type="text" name="masuk" id="masuk" class="form-control" onkeyup="total()" required>
 					</div>
 					<div class="form-group">
 						<label>Total : </label>
