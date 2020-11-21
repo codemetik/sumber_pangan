@@ -12,11 +12,11 @@ $dt = mysqli_fetch_array($sql);
 			<div class="row">
 				<div class="col-sm-6">
 					<div class="form-group">
-						<label>ID Supplier</label>
+						<label>ID Customer</label>
 						<input type="text" name="id_customer" class="form-control" value="<?= $dt['id_customer']; ?>" readonly>
 					</div>
 					<div class="form-group">
-						<label>Nama Supplier</label>
+						<label>Nama Customer</label>
 						<input type="text" name="nama_customer" class="form-control" value="<?= $dt['nama_customer']; ?>">
 					</div>
 					<div class="form-group">
