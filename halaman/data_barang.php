@@ -1,4 +1,5 @@
-<?php 
+<?php
+include "koneksi.php"; 
 include "rupiah.php";
 ?>
 <div class="card">
@@ -7,8 +8,17 @@ include "rupiah.php";
 	</div>
 	<div class="card-body">
 		<div class="row">
-			<div class="col-sm-4 mb-2">
+			<div class="col-sm-12 mb-2">
 				<a href="?page=inputDataBaru" class="btn bg-primary">Tambah Data Baru</a>
+				<form action="" method="POST">
+				  <div class="input-group input-group-sm float-right" style="width: 250px;">
+				    <input type="text" name="search" class="form-control float-right" placeholder="Search Barang">
+
+				    <div class="input-group-append">
+				      <button type="submit" name="tampil" class="btn btn-default"><i class="fas fa-search"></i></button>
+				    </div>
+				  </div>
+				</form>
 			</div>
 			<div class="col-sm-12">
 				<div class="table-responsive p-0" style="height: 450px;">
@@ -29,8 +39,13 @@ include "rupiah.php";
 					</thead>
 					<tbody>
 						<?php 
-						include "koneksi.php";
-						$query = mysqli_query($koneksi, "SELECT id_barang, nama , jenis, stok, harga, harga_jual, harga*stok AS sub_harga, (harga+harga_jual)*stok AS sub_hargajual FROM barang") or die(mysqli_error());
+						if (isset($_POST['tampil'])) {
+							$search = $_POST['search'];
+							$query = mysqli_query($koneksi, "SELECT id_barang, nama , jenis, stok, harga, harga_jual, harga*stok AS sub_harga, (harga+harga_jual)*stok AS sub_hargajual FROM barang WHERE id_barang LIKE '%".$search."%' OR nama LIKE '%".$search."%' OR jenis LIKE '%".$search."%'") or die(mysqli_error());
+						}else{
+							$query = mysqli_query($koneksi, "SELECT id_barang, nama , jenis, stok, harga, harga_jual, harga*stok AS sub_harga, (harga+harga_jual)*stok AS sub_hargajual FROM barang") or die(mysqli_error());
+						}
+						
 						$no=1;
 						while($data = mysqli_fetch_array($query)){
 								?>
@@ -54,11 +69,17 @@ include "rupiah.php";
 						<?php } ?>
 						<tr class="table-primary">
 							<td colspan="5"><center>Total :</center></td>
-							<?php 	
-							$qu = mysqli_query($koneksi,"SELECT SUM(harga) AS harga, SUM(harga_jual) AS harga_jual, SUM(harga*stok) AS sub_harga, SUM((harga+harga_jual)*stok) AS sub_hargajual FROM barang");
-							$dat = mysqli_fetch_array($qu);
-							 ?>
-							<td>
+							<?php 
+							if (isset($_POST['tampil'])) {
+									$search = $_POST['search'];
+									$qu = mysqli_query($koneksi,"SELECT SUM(harga) AS harga, SUM(harga_jual) AS harga_jual, SUM(harga*stok) AS sub_harga, SUM((harga+harga_jual)*stok) AS sub_hargajual FROM barang WHERE id_barang LIKE '%".$search."%' OR nama LIKE '%".$search."%' OR jenis LIKE '%".$search."%'");
+
+								}else{
+									$qu = mysqli_query($koneksi,"SELECT SUM(harga) AS harga, SUM(harga_jual) AS harga_jual, SUM(harga*stok) AS sub_harga, SUM((harga+harga_jual)*stok) AS sub_hargajual FROM barang");
+								}	
+							
+							while ($dat = mysqli_fetch_array($qu)) { ?>
+								<td>
 								<input type="text" name="total" class="form-control bg-red" value="<?php echo rupiah($dat['harga']); ?>" readonly>
 							</td>
 							<td>
@@ -69,7 +90,9 @@ include "rupiah.php";
 							</td>
 							<td>
 								<input type="text" name="total" class="form-control bg-red" value="<?php echo rupiah($dat['sub_hargajual']); ?>" readonly>
-							</td>
+							</td>	
+							<?php }
+							 ?>
 							<td></td>
 						</tr>	
 					</tbody>

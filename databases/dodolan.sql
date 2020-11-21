@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 17 Nov 2020 pada 01.26
+-- Waktu pembuatan: 21 Nov 2020 pada 21.02
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.4.9
 
@@ -93,7 +93,7 @@ INSERT INTO `barang` (`id_barang`, `nama`, `jenis`, `stok`, `harga`, `harga_jual
 ('K0017', 'Beras andalan', 'Rombeng', 40, 50000, 55000),
 ('K0018', 'Kebuli', 'Buli', 30, 45000, 50000),
 ('K0019', 'buli', 'kebul', 20, 100000, 105000),
-('K0020', 'Buli keb', 'kebul-kebul', 22, 32000, 34000),
+('K0020', 'Buli keb', 'kebul-kebul', 21, 32000, 34000),
 ('K0021', 'Balibul', 'Bali', 30, 15000, 20000);
 
 --
@@ -125,7 +125,9 @@ CREATE TABLE `tb_customer` (
 --
 
 INSERT INTO `tb_customer` (`id_customer`, `nama_customer`, `no_telp`, `alamat`) VALUES
-('CS001', 'Dandi Boy', '08977777777', 'tangerang');
+('CS001', 'Dandi Boy', '08977777777', 'tangerang'),
+('CS002', 'Badud', '098786666666', 'Tangerang'),
+('CS003', 'budi', '08977777777', 'Tangerang');
 
 -- --------------------------------------------------------
 
@@ -146,11 +148,9 @@ CREATE TABLE `tb_rols_customer` (
 --
 
 INSERT INTO `tb_rols_customer` (`no`, `id_customer`, `id_jual`, `id_barang`, `tgl`) VALUES
-(1, 'CS002', 'P010', 'K0020', '2020-11-16'),
-(2, 'CS003', 'P009', 'K0020', '2020-11-16'),
-(3, 'CS004', 'P010', 'K0020', '2020-11-16'),
-(4, 'CS005', 'P001', 'K0020', '2020-11-17'),
-(5, 'CS001', 'P001', 'K0021', '2020-11-17');
+(6, 'CS001', 'P002', 'K0020', '2020-11-21'),
+(7, 'CS002', 'P001', 'K0021', '2020-11-09'),
+(8, 'CS001', 'P003', 'K0020', '2020-11-21');
 
 -- --------------------------------------------------------
 
@@ -175,7 +175,8 @@ INSERT INTO `tb_rols_supplier` (`no`, `id_supplier`, `id_transaksi`, `id_barang`
 (4, 'SUP0002', 'T002', 'K0002', '2020-11-17'),
 (5, 'SUP0001', 'T003', 'K0003', '2020-11-17'),
 (6, 'SUP0002', 'T004', 'K0004', '2020-11-17'),
-(7, 'SUP0002', 'T005', 'K0020', '2020-11-17');
+(7, 'SUP0002', 'T005', 'K0020', '2020-11-17'),
+(8, 'SUP0001', 'T006', 'K0020', '2020-11-21');
 
 -- --------------------------------------------------------
 
@@ -221,7 +222,8 @@ INSERT INTO `tb_transaksi` (`id_transaksi`, `tanggal`, `id_barang`, `nama_barang
 ('T002', '2020-11-17', 'K0002', 'Beras Pandan Wangi', 3),
 ('T003', '2020-11-17', 'K0003', 'Beras Idola', 4),
 ('T004', '2020-11-17', 'K0004', 'Beras Si Pulen', 3),
-('T005', '2020-11-17', 'K0020', 'Buli keb', 2);
+('T005', '2020-11-17', 'K0020', 'Buli keb', 2),
+('T006', '2020-11-21', 'K0020', 'Buli keb', 1);
 
 --
 -- Trigger `tb_transaksi`
@@ -270,7 +272,9 @@ CREATE TABLE `tb_transaksi_jual` (
 --
 
 INSERT INTO `tb_transaksi_jual` (`id_jual`, `tanggal`, `id_barang`, `nama_barang`, `brg_keluar`) VALUES
-('P001', '2020-11-17', 'K0021', 'Balibul', 2);
+('P001', '2020-11-17', 'K0021', 'Balibul', 2),
+('P002', '2020-11-21', 'K0020', 'Buli keb', 1),
+('P003', '2020-11-21', 'K0020', 'Buli keb', 1);
 
 --
 -- Trigger `tb_transaksi_jual`
@@ -373,13 +377,13 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT untuk tabel `tb_rols_customer`
 --
 ALTER TABLE `tb_rols_customer`
-  MODIFY `no` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `no` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_rols_supplier`
 --
 ALTER TABLE `tb_rols_supplier`
-  MODIFY `no` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `no` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

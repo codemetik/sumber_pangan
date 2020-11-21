@@ -26,11 +26,12 @@
 	</div>
 	<div class="card">
 		<div class="card-body login-card-body">
+			<p class="login-box-msg">Register</p>
 			<form action="submit_register.php" method="post">
 				<div class="form-group">
 					<label>Username</label>
 					<div class="input-group mb-3">
-						<input class="form-control" type="text" name="username">
+						<input class="form-control" type="text" name="username" autofocus placeholder="username">
 							<div class="input-group-append">
 					            <div class="input-group-text">
 					              <span class="fas fa-envelope"></span>
@@ -41,7 +42,7 @@
 				<div class="form-group">
 					<label>Password</label>
 					<div class="input-group mb-3">
-					<input class="form-control" type="password" name="password">
+					<input class="form-control" type="password" name="password" placeholder="password">
 						<div class="input-group-append">
 			            <div class="input-group-text">
 			              <span class="fas fa-lock"></span>

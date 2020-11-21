@@ -13,7 +13,7 @@ if (!isset($_SESSION['username'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>Sumber Pangan</title>
+  <title>PT. Purnamajaya Bhakti Utama.</title>
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
@@ -242,6 +242,9 @@ if (isset($_GET['page'])) {
     case 'customer':
       include "halaman/customer/hal_customer.php";
       break;
+    case 'inputCustomer':
+      include "halaman/customer/input_customer.php";
+      break;
     case 'inputSupplier':
       include "halaman/supplier/input_supplier.php";
       break;
@@ -250,6 +253,12 @@ if (isset($_GET['page'])) {
       break;
     case 'updateCustomer':
       include "halaman/customer/update_customer.php";
+      break;
+    case 'print_laporanmasuk':
+      include "halaman/print_laporanA.php";
+      break;
+    case 'print_laporankeluar':
+      include "halaman/print_laporanB.php";
       break;
     default:
       echo "<center><h1>Halaman tidak ada</h1</center>";

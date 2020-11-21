@@ -68,8 +68,8 @@ if ($custom<10) {
 			</div>
 			<div class="col-sm-4">
 				<div class="form-group">
-					<label>Jumlah Barang Keluar</label>
-					<input type="text" name="keluar" class="form-control" id="keluar" onkeyup="total()" required>
+					<label>Jumlah Barang Keluar /pcs</label>
+					<input type="text" name="keluar" class="form-control" id="keluar" onkeyup="total()" required placeholder="jumlah barang">
 				</div>
 				<div class="form-group">
 					<label>Total :</label>
@@ -77,23 +77,19 @@ if ($custom<10) {
 				</div>
 				
 			</div>
-			<div class="card col-sm-4 bg-primary p-3">
-				<center><h5>Data Customer</h5></center>
+			<div class="card col-sm-4 bg-primary p-3" style="height: 150px;">
+				<center><h5>Pilih Customer</h5></center>
 				<div class="form-group">
-					<label>ID Customer</label>
-					<input type="text" name="id_customer" class="form-control" value="<?= $idcus; ?>" readonly>
-				</div>
-				<div class="form-group">
-					<label>Nama Customer</label>
-					<input type="text" name="nama_customer" class="form-control" required>
-				</div>
-				<div class="form-group">
-					<label>No Telp</label>
-					<input type="text" name="no_telp" class="form-control">
-				</div>
-				<div class="form-group">
-					<label>alamat</label>
-					<input type="textarea" name="alamat" class="form-control">
+					<label>Customer</label>
+					<select class="form-control-sm select2" name="id_customer" style="width: 100%;" required>
+						<option value="">==Pilih==</option>
+					<?php 
+					$s = mysqli_query($koneksi, "SELECT * FROM tb_customer");
+					while ($ds = mysqli_fetch_array($s)) { ?>
+						<option value="<?= $ds['id_customer']; ?>"><?= $ds['id_customer']." - ".$ds['nama_customer']; ?></option>
+					<?php }
+					?>
+					</select>
 				</div>
 			</div>
 			<div class="col-sm-12">

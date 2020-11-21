@@ -7,9 +7,10 @@ include "koneksi.php";
 	</div>
 	<div class="card-body">
 		<div class="row">
-			<div class="col-sm-4 mb-2">
+			<div class="col-sm-12 mb-2">
+				<a href="?page=inputCustomer" class="btn bg-primary">Tambah Customer</a>
 				<form action="" method="POST">
-				  <div class="input-group input-group-sm" style="width: 250px;">
+				  <div class="input-group input-group-sm float-right" style="width: 250px;">
 				    <input type="text" name="search" class="form-control float-right" placeholder="Search Customer">
 
 				    <div class="input-group-append">

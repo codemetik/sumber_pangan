@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Dasboard</title>
+	<title>PT. Purnamajaya Bhakti Utama.</title>
 	<link rel="stylesheet" type="text/css" href="css/style-nav.css">
 	<link rel="stylesheet" type="text/css" href="css/styleTable.css">
 	<script type="text/javascript" src="../js/jquery.js"></script>

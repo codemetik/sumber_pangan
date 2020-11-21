@@ -6,7 +6,7 @@ session_start();
 <head>
 	<meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Sumber Pangan</title>
+  <title>PT. Purnamajaya Bhakti Utama.</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -44,7 +44,7 @@ session_start();
 		<p class="login-box-msg">Login to see more</p>
 		<form action="submit_login.php" method="post" style="color:#FFFFFF">
 			<div class="input-group mb-3">
-				<input class="form-control" type="text" name="username">
+				<input class="form-control" type="text" name="username" autofocus placeholder="username">
 				<div class="input-group-append">
 		            <div class="input-group-text">
 		              <span class="fas fa-envelope"></span>
@@ -52,7 +52,7 @@ session_start();
 		         </div>
 			</div>
 			<div class="input-group">
-				<input class="form-control" type="password" name="password">	
+				<input class="form-control" type="password" name="password" placeholder="password">	
 				<div class="input-group-append">
 		            <div class="input-group-text">
 		              <span class="fas fa-lock"></span>

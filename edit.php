@@ -54,9 +54,10 @@
 	<div class="col-sm-6">
 		
 	</div>
-	<div class="col-sm-4">
-		<div class="input-group">
-			<button type="submit" name="update" class="btn bg-primary col-sm-12"><i class="fa fa-save"></i> Save</button>
+	<div class="col-sm-3">
+		<div class="">
+			<button type="submit" name="update" class="btn bg-primary"><i class="fa fa-save"></i> Save</button>
+			<a href="index2.php?page=stok_barang" class="btn bg-blue">Cencel</a>
 		</div>
 	</div>
 	</div>	

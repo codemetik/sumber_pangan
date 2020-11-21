@@ -28,9 +28,9 @@ include "rupiah.php";
          </form>
       </div>
       <div class="col-sm-12">
-        <div class="table-responsive">
-          <table class="table table-bordered table-hover font-12">
-         <thead class="thead-dark">
+        <div class="table-responsive p-0" style="height: 450px;">
+          <table class="table table-bordered table-head-fixed text-nowrap table-hover font-12">
+         <thead>
            <tr>
             <th>No</th>
           <th>ID transaksi</th>
@@ -89,6 +89,20 @@ include "rupiah.php";
         </tr>
         </tbody>
         </table>  
+        </div>
+      </div>
+      <div class="col-lg-12">
+        <div class="float-right">
+          <?php 
+          if (isset($_POST['submit'])) {
+            $search1 = $_POST['search1'];
+            $search2 = $_POST['search2']; ?>
+            <a href="halaman/print_laporanB.php?&tgla=<?= $search1; ?>&tglb=<?= $search2; ?>" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
+          <?php }else{
+
+          }
+          ?>
+          
         </div>
       </div>
     </div>

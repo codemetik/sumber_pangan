@@ -1,6 +1,6 @@
 <?php 
 include "koneksi.php";
-$sql = mysqli_query($koneksi, "SELECT * FROM barang x INNER JOIN tb_transaksi Y ON y.id_barang = x.id_barang WHERE id_transaksi = '".$_GET['id']."' ");
+$sql = mysqli_query($koneksi, "SELECT * FROM barang X INNER JOIN tb_transaksi Y ON y.id_barang = x.id_barang INNER JOIN tb_rols_supplier z ON z.id_transaksi = y.id_transaksi INNER JOIN tb_supplier a ON a.id_supplier = z.id_supplier WHERE y.id_transaksi = '".$_GET['id']."' ");
 $dt = mysqli_fetch_array($sql);
 ?>
 <div class="card">
@@ -10,7 +10,7 @@ $dt = mysqli_fetch_array($sql);
 	<div class="card-body">
 	<form action="" method="POST">
 		<div class="row">
-			<div class="col-sm-6">
+			<div class="col-sm-4">
 				<div class="form-group">
 					<label>ID Transakssi</label>
 					<input type="text" name="id_transaksi" class="form-control" value="<?= $dt['id_transaksi']; ?>" readonly>
@@ -32,21 +32,42 @@ $dt = mysqli_fetch_array($sql);
 					<input type="text" name="harga" id="harga" class="form-control" value="<?= $dt['harga']; ?>" readonly>
 				</div>
 			</div>
-			<div class="col-sm-6">
+			<div class="col-sm-4">
 				<div class="form-group">
-						<label>Jumlah Barang Masuk</label>
-						<input type="text" name="masuk" id="masuk" class="form-control" value="<?= $dt['brg_masuk']; ?>" onkeyup="total()">
-					</div>
-					<div class="form-group">
-						<label>Total : </label>
-						<input type="text" name="hasil" id="hasil" class="form-control" readonly>
-					</div>
-					<div class="form-group">
-						<button type="submit" name="simpan" class="btn bg-primary col-sm-12"><i class="fa fa-save"></i> SIMPAN</button>
-					</div>
-					<div class="form-group">
-						<a href="?page=pembelian" class="btn bg-primary col-sm-12">Klik disini untuk Kembali</a>
-					</div>
+					<label>Jumlah Barang Masuk</label>
+					<input type="text" name="masuk" id="masuk" class="form-control" value="<?= $dt['brg_masuk']; ?>" onkeyup="total()">
+				</div>
+				<div class="form-group">
+					<label>Total : </label>
+					<input type="text" name="hasil" id="hasil" class="form-control" readonly>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="form-group">
+					<label>Supplier</label>
+					<select class="form-control-sm select2" name="id_supplier" style="width: 100%;">
+						<option>==Pilih==</option>
+						<?php 
+						$sqld = mysqli_query($koneksi, "SELECT * FROM tb_supplier");
+						while ($ds = mysqli_fetch_array($sqld)) {
+							if ($dt['id_supplier'] == $ds['id_supplier']) {
+								$select = "selected";
+							}else{
+								$select = "";
+							}
+							echo "<option value='".$ds['id_supplier']."' ".$select.">".$ds['id_supplier']." - ".$ds['nama_supplier']."</option>";
+						}
+						?>
+					</select>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="form-group">
+					<button type="submit" name="simpan" class="btn bg-orange col-sm-12"><i class="fa fa-save"></i> SIMPAN PERUBAHAN</button>
+				</div>
+				<div class="form-group">
+					<a href="?page=pembelian" class="btn bg-primary col-sm-12">Klik disini untuk Kembali</a>
+				</div>
 			</div>
 		</div>
 	</form>
@@ -57,10 +78,12 @@ $dt = mysqli_fetch_array($sql);
 if (isset($_POST['simpan'])) {
 	$id_transaksi = $_POST['id_transaksi'];
 	$brg_masuk = $_POST['masuk'];
+	$id_supplier = $_POST['id_supplier'];
 
 	$update = mysqli_query($koneksi, "UPDATE tb_transaksi SET brg_masuk = '".$brg_masuk."' WHERE id_transaksi = '".$id_transaksi."'");
+	$upd = mysqli_query($koneksi, "UPDATE tb_rols_supplier SET id_supplier = '".$id_supplier."' WHERE id_transaksi = '".$id_transaksi."'");
 
-	if ($update) {
+	if ($update && $upd) {
 		echo "<script>
 		alert('Data Berhasil diupdate');
 		document.location.href = 'index2.php?page=pembelian';

@@ -1,4 +1,5 @@
 <?php 
+include "koneksi.php";
 include "rupiah.php";
 ?>
 <div class="card">
@@ -7,25 +8,40 @@ include "rupiah.php";
 	</div>
 	<div class="card-body">
 		<div class="row">
-			<div class="col-sm-4 mb-2">
+			<div class="col-sm-12 mb-2">
 				<a href="?page=inputDataBaruPembelian" class="btn bg-primary">Tambah Pembelian</a>
+				<form action="" method="POST">
+				  <div class="input-group input-group-sm float-right" style="width: 350px;">
+				    <input type="text" name="search" class="form-control float-right" placeholder="Search Barang / Supplier">
+
+				    <div class="input-group-append">
+				      <button type="submit" name="tampil" class="btn btn-default"><i class="fas fa-search"></i></button>
+				    </div>
+				  </div>
+				</form>
 			</div>
 			<div class="col-sm-12">
-				<div class="table-responsive">
-					<table class="table table-bordered table-hover font-12">
+				<div class="table-responsive p-0" style="height: 450px;">
+					<table class="table table-bordered table-hover table-head-fixed text-nowrap font-12">
 						<tr class="thead-dark">
 							<th>No</th>
 							<th>ID transaksi</th>
 							<th>Tanggal</th>
 							<th>ID barang</th>
 							<th>Nama Barang</th>
+							<th>Nama Supplier</th>
 							<th>Barang Masuk</th>
 							<th>Total Harga</th>
 							<th>Opsi</th>
 						</tr>
 						<?php 
-						include "koneksi.php";
-						$query = mysqli_query($koneksi, "SELECT id_transaksi, x.id_barang, tanggal, nama_barang, brg_masuk, harga * brg_masuk AS total FROM tb_transaksi X INNER JOIN barang Y ON y.id_barang = x.id_barang")or die(mysqli_error());
+						if (isset($_POST['tampil'])) {
+							$search = $_POST['search'];
+							$query = mysqli_query($koneksi, "SELECT y.id_transaksi, x.id_barang, tanggal, nama_barang, nama_supplier, brg_masuk, harga * brg_masuk AS total FROM barang X INNER JOIN tb_transaksi Y ON y.id_barang = x.id_barang INNER JOIN tb_rols_supplier z ON z.id_transaksi = y.id_transaksi INNER JOIN tb_supplier a ON a.id_supplier = z.id_supplier WHERE nama_barang LIKE '%".$search."%' OR nama_supplier LIKE '%".$search."%'")or die(mysqli_error());
+						}else{
+							$query = mysqli_query($koneksi, "SELECT y.id_transaksi, x.id_barang, tanggal, nama_barang, nama_supplier, brg_masuk, harga * brg_masuk AS total FROM barang X INNER JOIN tb_transaksi Y ON y.id_barang = x.id_barang INNER JOIN tb_rols_supplier z ON z.id_transaksi = y.id_transaksi INNER JOIN tb_supplier a ON a.id_supplier = z.id_supplier")or die(mysqli_error());	
+						}
+						
 						$no = 1;
 						while($data = mysqli_fetch_array($query)){
 						?>
@@ -35,6 +51,7 @@ include "rupiah.php";
 							<td><?php echo $data['tanggal']; ?></td>
 							<td><?php echo $data['id_barang']; ?></td>
 							<td><?php echo $data['nama_barang']; ?></td>
+							<td><?= $data['nama_supplier']; ?></td>
 							<td><?php echo $data['brg_masuk']; ?></td>
 							<td><?php echo rupiah($data['total']); ?></td>
 							<td class="pilih">

@@ -57,8 +57,8 @@ if ($tambah<10) {
 				</div>
 				<div class="col-sm-4">
 					<div class="form-group">
-						<label>Jumlah Barang Masuk</label>
-						<input type="text" name="masuk" id="masuk" class="form-control" onkeyup="total()" required>
+						<label>Jumlah Barang Masuk /pcs</label>
+						<input type="text" name="masuk" id="masuk" class="form-control" onkeyup="total()" required placeholder="jumlah barang">
 					</div>
 					<div class="form-group">
 						<label>Total : </label>
@@ -74,7 +74,7 @@ if ($tambah<10) {
 						<?php 
 						$s = mysqli_query($koneksi, "SELECT * FROM tb_supplier");
 						while ($ds = mysqli_fetch_array($s)) { ?>
-							<option value="<?= $ds['id_supplier']; ?>"><?= $ds['nama_supplier']; ?></option>
+							<option value="<?= $ds['id_supplier']; ?>"><?= $ds['id_supplier']." - ".$ds['nama_supplier']; ?></option>
 						<?php }
 						?>
 						</select>
