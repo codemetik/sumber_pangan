@@ -74,35 +74,74 @@ $dqu = mysqli_fetch_array($qu);
         <div class="col-7 col-sm-9">
                 <div class="tab-content" id="vert-tabs-tabContent">
                   <div class="tab-pane text-left fade show active" id="vert-tabs-supplier" role="tabpanel" aria-labelledby="vert-tabs-supplier-tab">
-                     Total Data Supplier : <?= $dsup['tot']; ?> Supplier
+                     Total Data Supplier : <?= $dsup['tot']; ?> Supplier <br><br>
+                     <div class="table-responsive">
+                       <table class="table table-hover">
+                         <thead>
+                          <?php 
+                          $sup = mysqli_query($koneksi, "SELECT * FROM tb_supplier");
+                          while ($dsup = mysqli_fetch_array($sup)) { ?>
+                              <tr>
+                                <td><?= $dsup['nama_supplier']; ?></td>
+                                <td><?= $dsup['no_telp']; ?></td>
+                              </tr> 
+                          <?php }
+                          ?>
+                           
+                         </thead>
+                       </table>
+                     </div>
                   </div>
                   <div class="tab-pane fade" id="vert-tabs-customer" role="tabpanel" aria-labelledby="vert-tabs-customer-tab">
-                     Total Data Customer : <?= $dcus['tot']; ?> Customer
+                     Total Data Customer : <?= $dcus['tot']; ?> Customer <br><br>
+                     <div class="table-responsive">
+                       <table class="table table-hover">
+                         <thead>
+                          <?php 
+                          $cus = mysqli_query($koneksi, "SELECT * FROM tb_customer");
+                          while ($dcus = mysqli_fetch_array($cus)) { ?>
+                              <tr>
+                                <td><?= $dcus['nama_customer']; ?></td>
+                                <td><?= $dcus['no_telp']; ?></td>
+                              </tr> 
+                          <?php }
+                          ?>
+                           
+                         </thead>
+                       </table>
+                     </div>
                   </div>
                   <div class="tab-pane fade" id="vert-tabs-barang" role="tabpanel" aria-labelledby="vert-tabs-barang-tab">
-                     <table class="table table-responsive col-sm-12 table-hover">
-                       <tr> 
-                          <th>Total Barang</th>
-                          <td>: <?= $dbrg['tot']; ?></td>
-                       </tr>
-                       <tr>
-                         <th>Total Harga</th>
-                         <td>: <?= rupiah($dqu['harga']); ?></td>
-                       </tr>
-                       <tr>
-                         <th>Total Harga Jual</th>
-                         <td>: <?= rupiah($dqu['harga_jual']); ?></td>
-                       </tr>
-                       <tr>
-                         <th>Sub Harga</th>
-                         <td>: <?= rupiah($dqu['sub_harga']); ?></td>
-                       </tr>
-                       <tr>
-                         <th>Sub Harga Jual</th>
-                         <td>: <?= rupiah($dqu['sub_hargajual']); ?></td>
-                         <td>Income : <?= rupiah($dqu['sub_hargajual'] - $dqu['sub_harga']); ?></td>
-                       </tr>
-                     </table>
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <table class="table table-responsive table-hover">
+                           <tr> 
+                              <th>Total Barang</th>
+                              <td>: <?= $dbrg['tot']; ?></td>
+                           </tr>
+                           <tr>
+                             <th>Total Harga</th>
+                             <td>: <?= rupiah($dqu['harga']); ?></td>
+                           </tr>
+                           <tr>
+                             <th>Total Harga Jual</th>
+                             <td>: <?= rupiah($dqu['harga_jual']); ?></td>
+                           </tr>
+                           <tr>
+                             <th>Sub Harga</th>
+                             <td>: <?= rupiah($dqu['sub_harga']); ?></td>
+                           </tr>
+                           <tr>
+                             <th>Sub Harga Jual</th>
+                             <td>: <?= rupiah($dqu['sub_hargajual']); ?></td>
+                           </tr>
+                           <tr>
+                             <th>Income</th>
+                             <td>: <?= rupiah($dqu['sub_hargajual'] - $dqu['sub_harga']); ?></td>
+                           </tr>
+                         </table>      
+                      </div>
+                    </div>
                   </div>
                   <div class="tab-pane fade" id="vert-tabs-pembelian" role="tabpanel" aria-labelledby="vert-tabs-pembelian-tab">
                      Pembelian : <?= $dtran['tot']; ?> id transaksi

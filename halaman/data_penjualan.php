@@ -58,7 +58,7 @@ include "rupiah.php";
 							<td><?php echo rupiah($data['total']); ?></td>
 							<td class="pilih">
 							<a href="?page=editPenjualan&id=<?= $data['id_jual']; ?>" class="btn bg-blue"><i class="fa fa-edit"></i></a>
-							<a href="halaman/barang_keluar/delete_keluar.php?id_jual=<?= $data['id_jual']; ?>">
+							<a href="halaman/barang_keluar/delete_keluar.php?id=<?= $data['id_jual']; ?>">
 								<button type='submit' name='hapus' class="btn bg-red"><i class="fa fa-trash-alt"></i></button></a>
 							</td>
 						</tr>

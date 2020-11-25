@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 21 Nov 2020 pada 21.02
+-- Waktu pembuatan: 25 Nov 2020 pada 09.32
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.4.9
 
@@ -63,7 +63,6 @@ INSERT INTO `admin` (`id_admin`, `nama`, `username`, `password`) VALUES
 CREATE TABLE `barang` (
   `id_barang` char(20) NOT NULL,
   `nama` varchar(225) NOT NULL,
-  `jenis` varchar(225) NOT NULL,
   `stok` int(225) NOT NULL,
   `harga` int(20) NOT NULL,
   `harga_jual` int(20) NOT NULL
@@ -73,28 +72,29 @@ CREATE TABLE `barang` (
 -- Dumping data untuk tabel `barang`
 --
 
-INSERT INTO `barang` (`id_barang`, `nama`, `jenis`, `stok`, `harga`, `harga_jual`) VALUES
-('K0001', 'Beras Raja Lele', 'Premium', 32, 55000, 60000),
-('K0002', 'Beras Pandan Wangi', 'Premium', 31, 60000, 65000),
-('K0003', 'Beras Idola', 'Super', 21, 75000, 80000),
-('K0004', 'Beras Si Pulen', 'Premium', 18, 65000, 70000),
-('K0005', 'Beras Maknyus', 'Super', 20, 70000, 75000),
-('K0006', 'Beras Sania', 'Premium', 20, 50000, 55000),
-('K0007', 'Beras BMW', 'Under Premium', 14, 40000, 45000),
-('K0008', 'Beras Cap Bunga', 'Under Premium', 20, 30000, 35000),
-('K0009', 'Beras Sumo', 'Premium', 20, 65000, 70000),
-('K0010', 'Beras Organik Nusa', 'Under Premium', 5, 35000, 40000),
-('K0011', 'Beras Idola', 'Super', 20, 75000, 80000),
-('K0012', 'Beras Ngawiti Mas', 'Premium', 20, 65000, 70000),
-('K0013', 'Beras Ramos', 'Super', 20, 70000, 75000),
-('K0014', 'Beras Topi Koki', 'Super', 28, 85000, 90000),
-('K0015', 'Beras Hotel', 'Super', 20, 80000, 85000),
-('K0016', 'Beras Panen', 'Super', 20, 60000, 65000),
-('K0017', 'Beras andalan', 'Rombeng', 40, 50000, 55000),
-('K0018', 'Kebuli', 'Buli', 30, 45000, 50000),
-('K0019', 'buli', 'kebul', 20, 100000, 105000),
-('K0020', 'Buli keb', 'kebul-kebul', 21, 32000, 34000),
-('K0021', 'Balibul', 'Bali', 30, 15000, 20000);
+INSERT INTO `barang` (`id_barang`, `nama`, `stok`, `harga`, `harga_jual`) VALUES
+('K0001', 'Beras Raja Lele', 30, 55000, 60000),
+('K0002', 'Beras Pandan Wangi', 28, 60000, 65000),
+('K0003', 'Beras Idola', 17, 75000, 80000),
+('K0004', 'Beras Si Pulen', 15, 65000, 70000),
+('K0005', 'Beras Maknyus', 20, 70000, 75000),
+('K0006', 'Beras Sania', 20, 50000, 55000),
+('K0007', 'Beras BMW', 14, 40000, 45000),
+('K0008', 'Beras Cap Bunga', 20, 30000, 35000),
+('K0009', 'Beras Sumo', 20, 65000, 70000),
+('K0010', 'Beras Organik Nusa', 5, 35000, 40000),
+('K0011', 'Beras Idola', 20, 75000, 80000),
+('K0012', 'Beras Ngawiti Mas', 20, 65000, 70000),
+('K0013', 'Beras Ramos', 20, 70000, 75000),
+('K0014', 'Beras Topi Koki', 28, 85000, 90000),
+('K0015', 'Beras Hotel', 20, 80000, 85000),
+('K0016', 'Beras Panen', 20, 60000, 65000),
+('K0017', 'Beras andalan', 40, 50000, 55000),
+('K0018', 'Kebuli', 30, 45000, 50000),
+('K0019', 'buli', 20, 100000, 105000),
+('K0020', 'Buli keb', 24, 32000, 34000),
+('K0021', 'Balibul', 36, 15000, 20000),
+('K0022', 'pulpen', 11, 70000, 7500000);
 
 --
 -- Trigger `barang`
@@ -148,9 +148,7 @@ CREATE TABLE `tb_rols_customer` (
 --
 
 INSERT INTO `tb_rols_customer` (`no`, `id_customer`, `id_jual`, `id_barang`, `tgl`) VALUES
-(6, 'CS001', 'P002', 'K0020', '2020-11-21'),
-(7, 'CS002', 'P001', 'K0021', '2020-11-09'),
-(8, 'CS001', 'P003', 'K0020', '2020-11-21');
+(11, 'CS002', 'P001', 'K0020', '2020-11-25');
 
 -- --------------------------------------------------------
 
@@ -171,12 +169,7 @@ CREATE TABLE `tb_rols_supplier` (
 --
 
 INSERT INTO `tb_rols_supplier` (`no`, `id_supplier`, `id_transaksi`, `id_barang`, `tgl`) VALUES
-(3, 'SUP0001', 'T001', 'K0001', '2020-11-17'),
-(4, 'SUP0002', 'T002', 'K0002', '2020-11-17'),
-(5, 'SUP0001', 'T003', 'K0003', '2020-11-17'),
-(6, 'SUP0002', 'T004', 'K0004', '2020-11-17'),
-(7, 'SUP0002', 'T005', 'K0020', '2020-11-17'),
-(8, 'SUP0001', 'T006', 'K0020', '2020-11-21');
+(10, 'SUP0001', 'T001', 'K0020', '2020-11-25');
 
 -- --------------------------------------------------------
 
@@ -218,12 +211,7 @@ CREATE TABLE `tb_transaksi` (
 --
 
 INSERT INTO `tb_transaksi` (`id_transaksi`, `tanggal`, `id_barang`, `nama_barang`, `brg_masuk`) VALUES
-('T001', '2020-11-17', 'K0001', 'Beras Raja Lele', 2),
-('T002', '2020-11-17', 'K0002', 'Beras Pandan Wangi', 3),
-('T003', '2020-11-17', 'K0003', 'Beras Idola', 4),
-('T004', '2020-11-17', 'K0004', 'Beras Si Pulen', 3),
-('T005', '2020-11-17', 'K0020', 'Buli keb', 2),
-('T006', '2020-11-21', 'K0020', 'Buli keb', 1);
+('T001', '2020-11-25', 'K0020', 'Buli keb', 5);
 
 --
 -- Trigger `tb_transaksi`
@@ -272,9 +260,7 @@ CREATE TABLE `tb_transaksi_jual` (
 --
 
 INSERT INTO `tb_transaksi_jual` (`id_jual`, `tanggal`, `id_barang`, `nama_barang`, `brg_keluar`) VALUES
-('P001', '2020-11-17', 'K0021', 'Balibul', 2),
-('P002', '2020-11-21', 'K0020', 'Buli keb', 1),
-('P003', '2020-11-21', 'K0020', 'Buli keb', 1);
+('P001', '2020-11-25', 'K0020', 'Buli keb', 1);
 
 --
 -- Trigger `tb_transaksi_jual`
@@ -287,7 +273,7 @@ $$
 DELIMITER ;
 DELIMITER $$
 CREATE TRIGGER `delete_rols_customer` AFTER DELETE ON `tb_transaksi_jual` FOR EACH ROW BEGIN
-	delete from tb_transaksi_jual where id_jual = old.id_jual;
+	delete from tb_rols_customer where id_jual = old.id_jual;
     END
 $$
 DELIMITER ;
@@ -377,13 +363,13 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT untuk tabel `tb_rols_customer`
 --
 ALTER TABLE `tb_rols_customer`
-  MODIFY `no` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `no` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_rols_supplier`
 --
 ALTER TABLE `tb_rols_supplier`
-  MODIFY `no` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `no` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
@@ -399,7 +385,7 @@ ALTER TABLE `tb_transaksi`
 -- Ketidakleluasaan untuk tabel `tb_transaksi_jual`
 --
 ALTER TABLE `tb_transaksi_jual`
-  ADD CONSTRAINT `relasi_jual` FOREIGN KEY (`id_barang`) REFERENCES `barang` (`id_barang`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `tb_transaksi_jual_ibfk_1` FOREIGN KEY (`id_barang`) REFERENCES `barang` (`id_barang`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

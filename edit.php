@@ -27,12 +27,6 @@
 					</td>
 				</tr>
 				<tr>
-					<th>Jenis</th>
-					<td>
-						<input type="text" name="jenis" class="form-control" value="<?php echo $data['jenis'] ?>">
-					</td>
-				</tr>
-				<tr>
 					<th>Stok</th>
 					<td><input type="text" name="stok" class="form-control" value="<?php echo $data['stok'] ?>"></td>
 				</tr>

@@ -28,7 +28,6 @@ include "rupiah.php";
 							<th>No</th>
 							<th>ID Barang</th>
 							<th>Nama Barang</th>
-							<th>Jenis</th>
 							<th>Stok</th>
 							<th>Harga</th>
 							<th>Harga Jual</th>
@@ -41,9 +40,9 @@ include "rupiah.php";
 						<?php 
 						if (isset($_POST['tampil'])) {
 							$search = $_POST['search'];
-							$query = mysqli_query($koneksi, "SELECT id_barang, nama , jenis, stok, harga, harga_jual, harga*stok AS sub_harga, (harga+harga_jual)*stok AS sub_hargajual FROM barang WHERE id_barang LIKE '%".$search."%' OR nama LIKE '%".$search."%' OR jenis LIKE '%".$search."%'") or die(mysqli_error());
+							$query = mysqli_query($koneksi, "SELECT id_barang, nama , stok, harga, harga_jual, harga*stok AS sub_harga, (harga+harga_jual)*stok AS sub_hargajual FROM barang WHERE id_barang LIKE '%".$search."%' OR nama LIKE '%".$search."%' OR jenis LIKE '%".$search."%'") or die(mysqli_error());
 						}else{
-							$query = mysqli_query($koneksi, "SELECT id_barang, nama , jenis, stok, harga, harga_jual, harga*stok AS sub_harga, (harga+harga_jual)*stok AS sub_hargajual FROM barang") or die(mysqli_error());
+							$query = mysqli_query($koneksi, "SELECT id_barang, nama , stok, harga, harga_jual, harga*stok AS sub_harga, (harga+harga_jual)*stok AS sub_hargajual FROM barang") or die(mysqli_error());
 						}
 						
 						$no=1;
@@ -53,7 +52,6 @@ include "rupiah.php";
 								<td><?= $no++; ?></td>
 								<td><?php echo $data['id_barang']; ?></td>
 								<td><?php echo $data['nama']; ?></td>
-								<td><?php echo $data['jenis']; ?></td>
 								<td><?php echo $data['stok']; ?></td>
 								<td><?php echo rupiah($data['harga']); ?></td>
 								<td><?php echo rupiah($data['harga_jual']); ?></td>
@@ -68,7 +66,7 @@ include "rupiah.php";
 							</tr>
 						<?php } ?>
 						<tr class="table-primary">
-							<td colspan="5"><center>Total :</center></td>
+							<td colspan="4"><center>Total :</center></td>
 							<?php 
 							if (isset($_POST['tampil'])) {
 									$search = $_POST['search'];

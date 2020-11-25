@@ -20,6 +20,8 @@ if ($custom<10) {
 	}else{
 		$idcus="CS0".$custom;
 	}
+
+$tgl = date("Y-m-d");
 ?>
 
 	<div class="card">
@@ -36,7 +38,7 @@ if ($custom<10) {
 				</div>
 				<div class="form-group">
 					<label>Tanggal</label>
-					<input type="text" name="tanggal" class="form-control" value="<?php echo "". date("Y-m-d"); ?>">
+					<input type="text" name="tanggal" class="form-control" value="<?php echo $tgl; ?>" readonly>
 				</div>
 				<div class="form-group">
 					<label>ID Barang</label>

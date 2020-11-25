@@ -9,6 +9,8 @@ if ($tambah<10) {
 	}else{
 		$id="T0".$tambah;
 	}
+
+$tgl = date("Y-m-d");
 ?>
 
 	<div class="card">
@@ -25,7 +27,7 @@ if ($tambah<10) {
 					</div>
 					<div class="form-group">
 						<label>Tanggal</label>
-						<input type="text" name="tanggal" class="form-control" value="<?php echo "". date("Y-m-d"); ?>" readonly>
+						<input type="date" name="tanggal" class="form-control">
 					</div>
 					<div class="form-group">
 						<label>ID Barang</label>

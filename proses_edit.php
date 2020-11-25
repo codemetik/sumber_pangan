@@ -3,7 +3,7 @@ include "koneksi.php";
 
 $id = $_POST['id'];
 $nama = $_POST['name'];
-$jns = $_POST['jenis'];
+
 $stk = $_POST['stok'];
 $hrg = $_POST['harga'];
 $harga_jual = $_POST['harga_jual'];
@@ -14,7 +14,7 @@ $harga_jual = $_POST['harga_jual'];
 
 		$data = mysqli_fetch_array($sql);
 
-		$query = "UPDATE barang set nama='".$nama."', jenis='".$jns."', stok='".$stk."', harga='".$hrg."', harga_jual = '".$harga_jual."' WHERE id_barang='".$id."'";
+		$query = "UPDATE barang set nama='".$nama."', stok='".$stk."', harga='".$hrg."', harga_jual = '".$harga_jual."' WHERE id_barang='".$id."'";
 
 		$sql = mysqli_query($koneksi, $query);
 
@@ -34,7 +34,7 @@ $harga_jual = $_POST['harga_jual'];
 		echo "<br><a href='index2.php?page=stok_barang'>kembali ke from</a></br>";
 	}
 	//jika user tidak menceklish checkbox.
-	$query = "UPDATE barang set nama='".$nama."', jenis='".$jns."', stok='".$stk."', harga='".$hrg."', harga_jual = '".$harga_jual."' WHERE id_barang='".$id."'";
+	$query = "UPDATE barang set nama='".$nama."', stok='".$stk."', harga='".$hrg."', harga_jual = '".$harga_jual."' WHERE id_barang='".$id."'";
 	$sql = mysqli_query($koneksi, $query);
 	if ($sql) {
 		// echo "<script>

@@ -17,6 +17,9 @@ INNER JOIN tb_transaksi_jual Y ON y.id_barang = x.id_barang
 INNER JOIN tb_rols_customer z ON z.id_jual = y.id_jual
 INNER JOIN tb_customer a ON a.id_customer = z.id_customer
 
+SELECT * FROM tb_transaksi_jual
+SELECT * FROM tb_rols_customer
+
 SELECT * FROM barang X 
 INNER JOIN tb_transaksi_jual Y ON y.id_barang = x.id_barang 
 INNER JOIN tb_rols_customer z ON z.id_jual = y.id_jual

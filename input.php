@@ -35,12 +35,6 @@ if ($tambah<10) {
 						</td>
 					</tr>
 					<tr>
-						<th class="bg-primary">Jenis</th>
-						<td>
-							<input type="text" class="form-control" name="jenis" placeholder="Jenis . . .">
-						</td>
-					</tr>
-					<tr>
 						<th class="bg-primary">Stok</th>
 						<td>
 							<input type="text" class="form-control" name="stok" placeholder="Stok . . .">
