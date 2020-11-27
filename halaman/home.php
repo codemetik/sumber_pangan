@@ -70,7 +70,7 @@ $dqu = mysqli_fetch_array($qu);
   </div>
   <div class="col-sm-6">
     <div class="card">
-      <div class="card-body">
+      <div class="card-body bg-blue">
         <div class="col-7 col-sm-9">
                 <div class="tab-content" id="vert-tabs-tabContent">
                   <div class="tab-pane text-left fade show active" id="vert-tabs-supplier" role="tabpanel" aria-labelledby="vert-tabs-supplier-tab">
@@ -144,10 +144,44 @@ $dqu = mysqli_fetch_array($qu);
                     </div>
                   </div>
                   <div class="tab-pane fade" id="vert-tabs-pembelian" role="tabpanel" aria-labelledby="vert-tabs-pembelian-tab">
-                     Pembelian : <?= $dtran['tot']; ?> id transaksi
+                     Pembelian : <?= $dtran['tot']; ?> Transaksi <br>
+                     <div class="row">
+                       <div class="col-sm-12">
+                         <table class="table table-responsive">
+                           <tr>
+                             <th>Supplier Terkait</th>
+                           </tr>
+                          <?php 
+                          $dsuppl = mysqli_query($koneksi, "SELECT * FROM tb_transaksi X INNER JOIN barang Y ON y.id_barang = x.id_barang INNER JOIN tb_rols_supplier z ON z.id_barang = x.id_barang INNER JOIN tb_supplier a ON a.id_supplier = z.id_supplier GROUP BY z.id_supplier");
+                          while ($dasup = mysqli_fetch_array($dsuppl)) {
+                            echo "<tr>";
+                            echo "<td> Atas Nama : ".$dasup['nama_supplier']."</td>";
+                            echo "</tr>";
+                          }
+                          ?>
+                         </table>
+                       </div>
+                     </div>
                   </div>
                   <div class="tab-pane fade" id="vert-tabs-penjualan" role="tabpanel" aria-labelledby="vert-tabs-penjualan-tab">
-                     Pembelian : <?= $djul['tot']; ?> id transaksi
+                     Pembelian : <?= $djul['tot']; ?> Penjualan <br>
+                     <div class="row">
+                       <div class="col-sm-12">
+                         <table class="table table-responsive">
+                           <tr>
+                             <th>Customer Terkait</th>
+                           </tr>
+                           <?php 
+                          $dsuppl = mysqli_query($koneksi, "SELECT * FROM tb_transaksi_jual X INNER JOIN barang Y ON y.id_barang = x.id_barang INNER JOIN tb_rols_customer z ON z.id_barang = x.id_barang INNER JOIN tb_customer a ON a.id_customer = z.id_customer GROUP BY z.id_customer");
+                          while ($dasup = mysqli_fetch_array($dsuppl)) {
+                            echo "<tr>";
+                            echo "<td> Atas Nama : ".$dasup['nama_customer']."</td>";
+                            echo "</tr>";
+                          }
+                          ?>
+                         </table>
+                       </div>
+                     </div>
                   </div>
                 </div>
               </div>

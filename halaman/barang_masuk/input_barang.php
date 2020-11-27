@@ -27,7 +27,7 @@ $tgl = date("Y-m-d");
 					</div>
 					<div class="form-group">
 						<label>Tanggal</label>
-						<input type="date" name="tanggal" class="form-control">
+						<input type="date" name="tanggal" class="form-control" required>
 					</div>
 					<div class="form-group">
 						<label>ID Barang</label>

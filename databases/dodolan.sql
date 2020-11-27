@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 25 Nov 2020 pada 09.32
+-- Waktu pembuatan: 27 Nov 2020 pada 19.35
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.4.9
 
@@ -73,28 +73,27 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`id_barang`, `nama`, `stok`, `harga`, `harga_jual`) VALUES
-('K0001', 'Beras Raja Lele', 30, 55000, 60000),
-('K0002', 'Beras Pandan Wangi', 28, 60000, 65000),
-('K0003', 'Beras Idola', 17, 75000, 80000),
-('K0004', 'Beras Si Pulen', 15, 65000, 70000),
-('K0005', 'Beras Maknyus', 20, 70000, 75000),
-('K0006', 'Beras Sania', 20, 50000, 55000),
-('K0007', 'Beras BMW', 14, 40000, 45000),
-('K0008', 'Beras Cap Bunga', 20, 30000, 35000),
-('K0009', 'Beras Sumo', 20, 65000, 70000),
-('K0010', 'Beras Organik Nusa', 5, 35000, 40000),
-('K0011', 'Beras Idola', 20, 75000, 80000),
-('K0012', 'Beras Ngawiti Mas', 20, 65000, 70000),
-('K0013', 'Beras Ramos', 20, 70000, 75000),
-('K0014', 'Beras Topi Koki', 28, 85000, 90000),
-('K0015', 'Beras Hotel', 20, 80000, 85000),
-('K0016', 'Beras Panen', 20, 60000, 65000),
-('K0017', 'Beras andalan', 40, 50000, 55000),
-('K0018', 'Kebuli', 30, 45000, 50000),
-('K0019', 'buli', 20, 100000, 105000),
-('K0020', 'Buli keb', 24, 32000, 34000),
-('K0021', 'Balibul', 36, 15000, 20000),
-('K0022', 'pulpen', 11, 70000, 7500000);
+('K0001', 'Beras Raja Lele', 10, 55000, 60000),
+('K0003', 'Beras Idola', 10, 75000, 80000),
+('K0004', 'Beras Si Pulen', 10, 65000, 70000),
+('K0005', 'Beras Maknyus', 10, 70000, 75000),
+('K0006', 'Beras Sania', 10, 50000, 55000),
+('K0007', 'Beras BMW', 10, 40000, 45000),
+('K0008', 'Beras Cap Bunga', 10, 30000, 35000),
+('K0009', 'Beras Sumo', 10, 65000, 70000),
+('K0010', 'Beras Organik Nusa', 10, 35000, 40000),
+('K0011', 'Beras Idola', 10, 75000, 80000),
+('K0012', 'Beras Ngawiti Mas', 10, 65000, 70000),
+('K0013', 'Beras Ramos', 10, 70000, 75000),
+('K0014', 'Beras Topi Koki', 10, 85000, 90000),
+('K0015', 'Beras Hotel', 10, 80000, 85000),
+('K0016', 'Beras Panen', 10, 60000, 65000),
+('K0017', 'Beras andalan', 10, 50000, 55000),
+('K0018', 'Kebuli', 10, 45000, 50000),
+('K0019', 'buli', 10, 100000, 105000),
+('K0020', 'Buli keb', 10, 32000, 34000),
+('K0021', 'Balibul', 10, 15000, 20000),
+('K0022', 'pulpen', 10, 70000, 7500000);
 
 --
 -- Trigger `barang`
@@ -148,7 +147,8 @@ CREATE TABLE `tb_rols_customer` (
 --
 
 INSERT INTO `tb_rols_customer` (`no`, `id_customer`, `id_jual`, `id_barang`, `tgl`) VALUES
-(11, 'CS002', 'P001', 'K0020', '2020-11-25');
+(14, 'CS002', 'P001', 'K0001', '2020-11-27'),
+(15, 'CS002', 'P002', 'K0001', '2020-11-27');
 
 -- --------------------------------------------------------
 
@@ -169,7 +169,8 @@ CREATE TABLE `tb_rols_supplier` (
 --
 
 INSERT INTO `tb_rols_supplier` (`no`, `id_supplier`, `id_transaksi`, `id_barang`, `tgl`) VALUES
-(10, 'SUP0001', 'T001', 'K0020', '2020-11-25');
+(14, 'SUP0001', 'T001', 'K0001', '2020-11-28'),
+(15, 'SUP0002', 'T002', 'K0001', '2020-11-28');
 
 -- --------------------------------------------------------
 
@@ -211,7 +212,8 @@ CREATE TABLE `tb_transaksi` (
 --
 
 INSERT INTO `tb_transaksi` (`id_transaksi`, `tanggal`, `id_barang`, `nama_barang`, `brg_masuk`) VALUES
-('T001', '2020-11-25', 'K0020', 'Buli keb', 5);
+('T001', '2020-11-28', 'K0001', 'Beras Raja Lele', 2),
+('T002', '2020-11-28', 'K0001', 'Beras Raja Lele', 1);
 
 --
 -- Trigger `tb_transaksi`
@@ -260,7 +262,8 @@ CREATE TABLE `tb_transaksi_jual` (
 --
 
 INSERT INTO `tb_transaksi_jual` (`id_jual`, `tanggal`, `id_barang`, `nama_barang`, `brg_keluar`) VALUES
-('P001', '2020-11-25', 'K0020', 'Buli keb', 1);
+('P001', '2020-11-27', 'K0001', 'Beras Raja Lele', 1),
+('P002', '2020-11-27', 'K0001', 'Beras Raja Lele', 2);
 
 --
 -- Trigger `tb_transaksi_jual`
@@ -363,13 +366,13 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT untuk tabel `tb_rols_customer`
 --
 ALTER TABLE `tb_rols_customer`
-  MODIFY `no` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `no` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_rols_supplier`
 --
 ALTER TABLE `tb_rols_supplier`
-  MODIFY `no` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `no` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

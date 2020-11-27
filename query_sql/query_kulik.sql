@@ -61,3 +61,4 @@ INNER JOIN tb_customer b ON b.id_customer = a.id_customer
 SELECT MONTH('2020-11-10') AS bulan
 
 SELECT * FROM tb_supplier 
+

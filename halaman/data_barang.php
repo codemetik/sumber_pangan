@@ -10,6 +10,7 @@ include "rupiah.php";
 		<div class="row">
 			<div class="col-sm-12 mb-2">
 				<a href="?page=inputDataBaru" class="btn bg-primary">Tambah Data Baru</a>
+				<a href="halaman/print_barang.php" target="_blank" class="btn bg-primary"><i class="fa fa-print"></i> Print</a>
 				<form action="" method="POST">
 				  <div class="input-group input-group-sm float-right" style="width: 250px;">
 				    <input type="text" name="search" class="form-control float-right" placeholder="Search Barang">
@@ -70,7 +71,7 @@ include "rupiah.php";
 							<?php 
 							if (isset($_POST['tampil'])) {
 									$search = $_POST['search'];
-									$qu = mysqli_query($koneksi,"SELECT SUM(harga) AS harga, SUM(harga_jual) AS harga_jual, SUM(harga*stok) AS sub_harga, SUM((harga+harga_jual)*stok) AS sub_hargajual FROM barang WHERE id_barang LIKE '%".$search."%' OR nama LIKE '%".$search."%' OR jenis LIKE '%".$search."%'");
+									$qu = mysqli_query($koneksi,"SELECT SUM(harga) AS harga, SUM(harga_jual) AS harga_jual, SUM(harga*stok) AS sub_harga, SUM((harga+harga_jual)*stok) AS sub_hargajual FROM barang WHERE id_barang LIKE '%".$search."%' OR nama LIKE '%".$search."%'");
 
 								}else{
 									$qu = mysqli_query($koneksi,"SELECT SUM(harga) AS harga, SUM(harga_jual) AS harga_jual, SUM(harga*stok) AS sub_harga, SUM((harga+harga_jual)*stok) AS sub_hargajual FROM barang");
