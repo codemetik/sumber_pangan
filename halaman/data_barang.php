@@ -62,7 +62,7 @@ include "rupiah.php";
 								<a href="?page=update&id=<?php echo $data['id_barang'] ?>">
 									<button class="btn bg-primary"><i class="fa fa-edit"></i></button></a> <!--| <?php /*echo "<a href='proses_delete.php?id=".$data['id_barang']."'>
 									<input type='submit' name='hapus' value='Hapus'></a>"*/?>-->
-									<a href="proses_delete.php?id=<?= $data['id_barang']; ?>"><button class="btn bg-red"><i class="fa fa-trash-alt"></i></button></a>
+									<a href="proses_delete.php?id=<?= $data['id_barang']; ?>" onclick="return confirm('Apakah anda yakin ingin menghapus siswa dari kelas ini?')"><button class="btn bg-red"><i class="fa fa-trash-alt"></i></button></a>
 								</td>
 							</tr>
 						<?php } ?>

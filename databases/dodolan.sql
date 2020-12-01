@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 27 Nov 2020 pada 19.35
+-- Waktu pembuatan: 01 Des 2020 pada 04.53
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.4.9
 
@@ -73,31 +73,28 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`id_barang`, `nama`, `stok`, `harga`, `harga_jual`) VALUES
-('K0001', 'Beras Raja Lele', 10, 55000, 60000),
-('K0003', 'Beras Idola', 10, 75000, 80000),
-('K0004', 'Beras Si Pulen', 10, 65000, 70000),
-('K0005', 'Beras Maknyus', 10, 70000, 75000),
-('K0006', 'Beras Sania', 10, 50000, 55000),
-('K0007', 'Beras BMW', 10, 40000, 45000),
-('K0008', 'Beras Cap Bunga', 10, 30000, 35000),
-('K0009', 'Beras Sumo', 10, 65000, 70000),
-('K0010', 'Beras Organik Nusa', 10, 35000, 40000),
-('K0011', 'Beras Idola', 10, 75000, 80000),
-('K0012', 'Beras Ngawiti Mas', 10, 65000, 70000),
-('K0013', 'Beras Ramos', 10, 70000, 75000),
-('K0014', 'Beras Topi Koki', 10, 85000, 90000),
-('K0015', 'Beras Hotel', 10, 80000, 85000),
-('K0016', 'Beras Panen', 10, 60000, 65000),
-('K0017', 'Beras andalan', 10, 50000, 55000),
-('K0018', 'Kebuli', 10, 45000, 50000),
-('K0019', 'buli', 10, 100000, 105000),
-('K0020', 'Buli keb', 10, 32000, 34000),
-('K0021', 'Balibul', 10, 15000, 20000),
-('K0022', 'pulpen', 10, 70000, 7500000);
+('K0001', 'Guarantee Card ', 2000, 185, 265),
+('K0002', 'Stiker Gajah B (Miyako)', 1000, 150, 193),
+('K0003', 'Stiker Yamaha', 5000, 75, 427),
+('K0004', 'Stiker Installation Advice Solenoid Interlock', 50, 6615, 8000),
+('K0005', 'Emblem \"S\"', 9000, 1100, 1400),
+('K0006', 'Label Denso', 52000, 65, 95);
 
 --
 -- Trigger `barang`
 --
+DELIMITER $$
+CREATE TRIGGER `delete_rols_customer` AFTER DELETE ON `barang` FOR EACH ROW BEGIN
+	delete from tb_rols_customer where id_barang = old.id_barang;
+    END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `delete_rols_supplier` AFTER DELETE ON `barang` FOR EACH ROW BEGIN
+	delete from tb_rols_supplier where id_barang = old.id_barang;
+    END
+$$
+DELIMITER ;
 DELIMITER $$
 CREATE TRIGGER `hapus_barang` AFTER DELETE ON `barang` FOR EACH ROW BEGIN
 	DELETE FROM tb_transaksi WHERE id_barang = old.id_barang;
@@ -124,9 +121,11 @@ CREATE TABLE `tb_customer` (
 --
 
 INSERT INTO `tb_customer` (`id_customer`, `nama_customer`, `no_telp`, `alamat`) VALUES
-('CS001', 'Dandi Boy', '08977777777', 'tangerang'),
-('CS002', 'Badud', '098786666666', 'Tangerang'),
-('CS003', 'budi', '08977777777', 'Tangerang');
+('CS001', 'PT. Rinnai Indonesia', '', ''),
+('CS002', 'PT.  Yamaha Indonesia', '', ''),
+('CS003', 'PT. Siemens Indonesia', '', ''),
+('CS004', 'PT. Indonesia Nippon Seiki', '', ''),
+('CS005', 'PT. Koyorad Jaya Indonesia ', '', '');
 
 -- --------------------------------------------------------
 
@@ -142,14 +141,6 @@ CREATE TABLE `tb_rols_customer` (
   `tgl` varchar(225) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data untuk tabel `tb_rols_customer`
---
-
-INSERT INTO `tb_rols_customer` (`no`, `id_customer`, `id_jual`, `id_barang`, `tgl`) VALUES
-(14, 'CS002', 'P001', 'K0001', '2020-11-27'),
-(15, 'CS002', 'P002', 'K0001', '2020-11-27');
-
 -- --------------------------------------------------------
 
 --
@@ -163,14 +154,6 @@ CREATE TABLE `tb_rols_supplier` (
   `id_barang` char(15) NOT NULL,
   `tgl` varchar(225) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `tb_rols_supplier`
---
-
-INSERT INTO `tb_rols_supplier` (`no`, `id_supplier`, `id_transaksi`, `id_barang`, `tgl`) VALUES
-(14, 'SUP0001', 'T001', 'K0001', '2020-11-28'),
-(15, 'SUP0002', 'T002', 'K0001', '2020-11-28');
 
 -- --------------------------------------------------------
 
@@ -190,8 +173,11 @@ CREATE TABLE `tb_supplier` (
 --
 
 INSERT INTO `tb_supplier` (`id_supplier`, `nama_supplier`, `no_telp`, `alamat`) VALUES
-('SUP0001', 'Dedek', '08977777777', 'Pamulang'),
-('SUP0002', 'Andy', '089565656878', 'Tangerang');
+('SUP0001', 'PT. Wahana Ajitama', '', ''),
+('SUP0002', 'PT. Mitra Grafika', '', ''),
+('SUP0003', 'Griya Sarana Label', '', ''),
+('SUP0004', '3 Jaya Digital Print', '', ''),
+('SUP0005', 'PT. Tato', '', '');
 
 -- --------------------------------------------------------
 
@@ -208,14 +194,6 @@ CREATE TABLE `tb_transaksi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tb_transaksi`
---
-
-INSERT INTO `tb_transaksi` (`id_transaksi`, `tanggal`, `id_barang`, `nama_barang`, `brg_masuk`) VALUES
-('T001', '2020-11-28', 'K0001', 'Beras Raja Lele', 2),
-('T002', '2020-11-28', 'K0001', 'Beras Raja Lele', 1);
-
---
 -- Trigger `tb_transaksi`
 --
 DELIMITER $$
@@ -225,7 +203,7 @@ CREATE TRIGGER `batal_trx` AFTER DELETE ON `tb_transaksi` FOR EACH ROW BEGIN
 $$
 DELIMITER ;
 DELIMITER $$
-CREATE TRIGGER `delete_rols_supplier` AFTER DELETE ON `tb_transaksi` FOR EACH ROW BEGIN
+CREATE TRIGGER `delete_rl_supplier_dari_trx` AFTER DELETE ON `tb_transaksi` FOR EACH ROW BEGIN
 	delete from tb_rols_supplier where id_transaksi = old.id_transaksi;
     END
 $$
@@ -258,14 +236,6 @@ CREATE TABLE `tb_transaksi_jual` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tb_transaksi_jual`
---
-
-INSERT INTO `tb_transaksi_jual` (`id_jual`, `tanggal`, `id_barang`, `nama_barang`, `brg_keluar`) VALUES
-('P001', '2020-11-27', 'K0001', 'Beras Raja Lele', 1),
-('P002', '2020-11-27', 'K0001', 'Beras Raja Lele', 2);
-
---
 -- Trigger `tb_transaksi_jual`
 --
 DELIMITER $$
@@ -275,7 +245,7 @@ CREATE TRIGGER `batal_jual_trx` AFTER DELETE ON `tb_transaksi_jual` FOR EACH ROW
 $$
 DELIMITER ;
 DELIMITER $$
-CREATE TRIGGER `delete_rols_customer` AFTER DELETE ON `tb_transaksi_jual` FOR EACH ROW BEGIN
+CREATE TRIGGER `delete_rl_customer_dari_trx_jual` AFTER DELETE ON `tb_transaksi_jual` FOR EACH ROW BEGIN
 	delete from tb_rols_customer where id_jual = old.id_jual;
     END
 $$
@@ -320,16 +290,16 @@ ALTER TABLE `tb_customer`
 --
 ALTER TABLE `tb_rols_customer`
   ADD PRIMARY KEY (`no`),
-  ADD KEY `id_customer` (`id_customer`),
-  ADD KEY `id_jual` (`id_jual`,`id_barang`);
+  ADD KEY `id_jual` (`id_jual`,`id_barang`),
+  ADD KEY `id_customer` (`id_customer`);
 
 --
 -- Indeks untuk tabel `tb_rols_supplier`
 --
 ALTER TABLE `tb_rols_supplier`
   ADD PRIMARY KEY (`no`),
-  ADD KEY `id_supplier` (`id_supplier`),
-  ADD KEY `id_transaksi` (`id_transaksi`,`id_barang`);
+  ADD KEY `id_transaksi` (`id_transaksi`,`id_barang`),
+  ADD KEY `id_supplier` (`id_supplier`);
 
 --
 -- Indeks untuk tabel `tb_supplier`
@@ -366,17 +336,29 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT untuk tabel `tb_rols_customer`
 --
 ALTER TABLE `tb_rols_customer`
-  MODIFY `no` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `no` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_rols_supplier`
 --
 ALTER TABLE `tb_rols_supplier`
-  MODIFY `no` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `no` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
+
+--
+-- Ketidakleluasaan untuk tabel `tb_rols_customer`
+--
+ALTER TABLE `tb_rols_customer`
+  ADD CONSTRAINT `tb_rols_customer_ibfk_1` FOREIGN KEY (`id_customer`) REFERENCES `tb_customer` (`id_customer`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `tb_rols_supplier`
+--
+ALTER TABLE `tb_rols_supplier`
+  ADD CONSTRAINT `tb_rols_supplier_ibfk_1` FOREIGN KEY (`id_supplier`) REFERENCES `tb_supplier` (`id_supplier`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `tb_transaksi`

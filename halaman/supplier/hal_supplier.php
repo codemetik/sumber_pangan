@@ -47,7 +47,7 @@ include "koneksi.php";
 								<td><?= $data['no_telp']; ?></td>
 								<td><?= $data['alamat']; ?></td>
 								<td>
-									<a href="?page=updateSupplier&id=<?= $data['id_supplier']; ?>" class="btn bg-blue"><i class="fa fa-edit"></i></a> || <a href="halaman/supplier/delete_supplier.php?id=<?= $data['id_supplier']; ?>" class="btn bg-danger"><i class="fa fa-trash-alt"></i></a>
+									<a href="?page=updateSupplier&id=<?= $data['id_supplier']; ?>" class="btn bg-blue"><i class="fa fa-edit"></i></a> || <a href="halaman/supplier/delete_supplier.php?id=<?= $data['id_supplier']; ?>" class="btn bg-danger"><i class="fa fa-trash-alt" onclick="return confirm('Apakah anda yakin ingin menghapus siswa dari kelas ini?')"></i></a>
 								</td>
 							</tr>
 						<?php }

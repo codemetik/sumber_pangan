@@ -47,7 +47,7 @@ include "koneksi.php";
 								<td><?= $data['no_telp']; ?></td>
 								<td><?= $data['alamat']; ?></td>
 								<td>
-									<a href="?page=updateCustomer&id=<?= $data['id_customer']; ?>" class="btn bg-blue"><i class="fa fa-edit"></i></a> || <a href="halaman/customer/delete_customer.php?id=<?= $data['id_customer']; ?>" class="btn bg-danger"><i class="fa fa-trash-alt"></i></a>
+									<a href="?page=updateCustomer&id=<?= $data['id_customer']; ?>" class="btn bg-blue"><i class="fa fa-edit"></i></a> || <a href="halaman/customer/delete_customer.php?id=<?= $data['id_customer']; ?>" class="btn bg-danger"><i class="fa fa-trash-alt" onclick="return confirm('Apakah anda yakin ingin menghapus siswa dari kelas ini?')"></i></a>
 								</td>
 							</tr>
 						<?php }
