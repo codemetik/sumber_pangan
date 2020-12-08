@@ -85,57 +85,6 @@ if (!isset($_SESSION['username'])) {
               <p>Home</p>
             </a>
           </li>
-          <!-- Tampilkan jika owner -->
-          <?php 
-          include "koneksi.php";
-          $cekowner = mysqli_query($koneksi, "SELECT * FROM tb_rols_akses X INNER JOIN admin Y ON y.id_admin = x.id_admin INNER JOIN tb_akses z ON z.id_akses = x.id_akses WHERE x.id_akses = '".$_SESSION['id_akses']."'");
-          $dcek = mysqli_fetch_array($cekowner);
-          if ($dcek['id_akses'] == "1") { ?>
-            <li class="nav-item has-treeview">
-            <a href="#" class="nav-link bg-blue">
-              <i class="nav-icon fas fa-users"></i>
-              <p>
-                Data User
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item bg-dark">
-                <a href="?page=data_user" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>User</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link bg-blue">
-              <i class="nav-icon fas fa-book"></i>
-              <p>
-                Kontak
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item bg-dark">
-                <a href="?page=supplier" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Data Supplier</p>
-                </a>
-              </li>
-              <li class="nav-item bg-dark">
-                <a href="?page=customer" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Data Customer</p>
-                </a>
-              </li>
-            </ul>
-          </li>  
-          <?php }else if($dcek['id_akses'] == "3"){ ?>
-
-          <?php }
-          ?>
-          <!-- /Tampilkan jika owner -->
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link bg-blue">
               <i class="nav-icon fas fa-th"></i>
@@ -145,12 +94,6 @@ if (!isset($_SESSION['username'])) {
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item bg-dark">
-                <a href="?page=stok_barang" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Data Stok</p>
-                </a>
-              </li>
               <li class="nav-item bg-dark">
                 <a href="?page=pembelian" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -225,71 +168,38 @@ if (isset($_GET['page'])) {
     case 'home':
       include "halaman/home.php";
       break;
-    case 'stok_barang':
-      include "halaman/data_barang.php";
-      break;
-    case 'dataBarang':
-      include "halaman/data_barang.php";
-      break;
-    case 'update':
-      include "edit.php";
-      break;
-    case 'delete':
-      include "proses_delete.php";
-      break;
     case 'pembelian':
-      include "halaman/data_pembelian.php";
+      include "halaman_admin/data_pembelian.php";
       break;
     case 'penjualan':
-      include "halaman/data_penjualan.php";
+      include "halaman_admin/data_penjualan.php";
       break;
     case 'laporanPem':
-      include "halaman/laporanA.php";
+      include "halaman_admin/laporanA.php";
       break;
     case 'laporanPen':
-      include "halaman/laporanB.php";
+      include "halaman_admin/laporanB.php";
       break;
     case 'inputDataBaru':
       include "input.php";
       break;
     case 'inputDataBaruPembelian':
-      include "halaman/barang_masuk/input_barang.php";
+      include "halaman_admin/barang_masuk/input_barang.php";
       break;
     case 'editPembelian':
-      include "halaman/barang_masuk/edit_pembelian.php";
+      include "halaman_admin/barang_masuk/edit_pembelian.php";
       break;
     case 'inputDataBaruPenjualan':
-      include "halaman/barang_keluar/input_barang_jual.php";
+      include "halaman_admin/barang_keluar/input_barang_jual.php";
       break;
     case 'editPenjualan':
-      include "halaman/barang_keluar/edit_penjualan.php";
-      break;
-    case 'supplier':
-      include "halaman/supplier/hal_supplier.php";
-      break;
-    case 'customer':
-      include "halaman/customer/hal_customer.php";
-      break;
-    case 'inputCustomer':
-      include "halaman/customer/input_customer.php";
-      break;
-    case 'inputSupplier':
-      include "halaman/supplier/input_supplier.php";
-      break;
-    case 'updateSupplier':
-      include "halaman/supplier/update_supplier.php";
-      break;
-    case 'updateCustomer':
-      include "halaman/customer/update_customer.php";
+      include "halaman_admin/barang_keluar/edit_penjualan.php";
       break;
     case 'print_laporanmasuk':
-      include "halaman/print_laporanA.php";
+      include "halaman_admin/print_laporanA.php";
       break;
     case 'print_laporankeluar':
-      include "halaman/print_laporanB.php";
-      break;
-    case 'data_user':
-      include "halaman/data_user.php";
+      include "halaman_admin/print_laporanB.php";
       break;
     default:
       echo "<center><h1>Halaman tidak ada</h1</center>";

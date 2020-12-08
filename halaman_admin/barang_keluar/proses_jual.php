@@ -25,17 +25,19 @@ if ($cekstok['stok'] > $msk) {
 
 	if ($sql && $cus_rol) {
 		echo "<script>alert('Data berhasil di upload !'); history.go(-1);</script>";
-		header("location:../../index2.php?page=penjualan");
+		header("location:../../halaman_admin.php?page=penjualan");
 	}else{
 		echo "<script>alert('Data gagal di upload !'); history.go(-1);</script>";
 	}
-		
+
 }else if($cekstok['stok'] < $msk){
 	echo "<script>
 	alert('Maaf Stok Barang tidak mencukupi');
-	document.location.href='../../index2.php?page=penjualan';
+	document.location.href='../../halaman_admin.php?page=penjualan';
 	</script>";
 }
+
+
 
 }
 ?>

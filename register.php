@@ -50,6 +50,19 @@
 			        </div>
 					</div>
 				</div>
+				<div class="form-group">
+					<label>Hak Akses</label>
+					<select class="form-control" name="id_akses">
+						<option>-- Pilih --</option>
+						<?php 
+						include "koneksi.php";
+						$pil = mysqli_query($koneksi, "SELECT * FROM tb_akses");
+						while ($data = mysqli_fetch_array($pil)) { ?>
+							<option value="<?= $data['id_akses']; ?>"><?= $data['nama_akses']; ?></option>
+						<?php }
+						?>
+					</select>
+				</div>
 				<center>
 				<input class="btn bg-primary" type="submit" value="register"> <br><br>
 				<a href="index.php" class="link"><u>Klik disini untuk Kembali</u></a>
