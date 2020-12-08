@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 01 Des 2020 pada 04.53
+-- Waktu pembuatan: 08 Des 2020 pada 11.45
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.4.9
 
@@ -39,20 +39,11 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id_admin`, `nama`, `username`, `password`) VALUES
-(1, '', 'admin', '21232f297a57a5a743894a0e4a801fc3'),
-(3, '', 'kebunkode', '626850df9ef9897ba2e253c3c427b435'),
-(4, '', 'bang_juli', '895dcd9a280363a6c3f493ea90513ff5'),
-(5, '', 'kode', '70375478134bc7187a0d5a0ffd59c283'),
-(7, '', 'windi', '96e79218965eb72c92a549dd5a330112'),
-(8, '', 'dani', '96e79218965eb72c92a549dd5a330112'),
-(9, '', 'jayanti', 'e10adc3949ba59abbe56e057f20f883e'),
-(10, '', 'admin', '21232f297a57a5a743894a0e4a801fc3'),
-(11, '', 'windi', '4e3ccde7dc705b1abcce17019905279b'),
-(12, '', 'admin2020', '4441e5d70b3657900fa57e66db407e0b'),
-(16, '', 'andi', 'ce0e5bf55e4f71749eade7a8b95c4e46'),
-(17, '', 'andi', 'ce0e5bf55e4f71749eade7a8b95c4e46'),
-(18, '', 'andi', 'ce0e5bf55e4f71749eade7a8b95c4e46'),
-(19, '', 'admin', '21232f297a57a5a743894a0e4a801fc3');
+(1, 'owner', 'owner', '72122ce96bfec66e2396d2e25225d70a'),
+(20, 'admin', 'admin', '21232f297a57a5a743894a0e4a801fc3'),
+(21, 'spv', 'spv', 'f4984324c6673ce07aafac15600af26e'),
+(25, 'andi', 'andi', 'ce0e5bf55e4f71749eade7a8b95c4e46'),
+(28, 'dila', 'dila', '35862fcf105f1aaa0b4f29ca71b96236');
 
 -- --------------------------------------------------------
 
@@ -73,12 +64,13 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`id_barang`, `nama`, `stok`, `harga`, `harga_jual`) VALUES
-('K0001', 'Guarantee Card ', 2000, 185, 265),
+('K0001', 'Guarantee Card ', 12000, 185, 265),
 ('K0002', 'Stiker Gajah B (Miyako)', 1000, 150, 193),
 ('K0003', 'Stiker Yamaha', 5000, 75, 427),
 ('K0004', 'Stiker Installation Advice Solenoid Interlock', 50, 6615, 8000),
 ('K0005', 'Emblem \"S\"', 9000, 1100, 1400),
-('K0006', 'Label Denso', 52000, 65, 95);
+('K0006', 'Label Denso', 52002, 65, 95),
+('K0007', 'rokok', 0, 11000, 12000);
 
 --
 -- Trigger `barang`
@@ -102,6 +94,26 @@ CREATE TRIGGER `hapus_barang` AFTER DELETE ON `barang` FOR EACH ROW BEGIN
     END
 $$
 DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tb_akses`
+--
+
+CREATE TABLE `tb_akses` (
+  `id_akses` int(20) NOT NULL,
+  `nama_akses` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tb_akses`
+--
+
+INSERT INTO `tb_akses` (`id_akses`, `nama_akses`) VALUES
+(1, 'Owner'),
+(2, 'Admin'),
+(3, 'SPV PPIC');
 
 -- --------------------------------------------------------
 
@@ -130,6 +142,29 @@ INSERT INTO `tb_customer` (`id_customer`, `nama_customer`, `no_telp`, `alamat`) 
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `tb_rols_akses`
+--
+
+CREATE TABLE `tb_rols_akses` (
+  `id_rols` int(20) NOT NULL,
+  `id_admin` int(20) NOT NULL,
+  `id_akses` int(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tb_rols_akses`
+--
+
+INSERT INTO `tb_rols_akses` (`id_rols`, `id_admin`, `id_akses`) VALUES
+(1, 1, 1),
+(2, 20, 2),
+(3, 21, 3),
+(7, 25, 1),
+(10, 28, 2);
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `tb_rols_customer`
 --
 
@@ -140,6 +175,13 @@ CREATE TABLE `tb_rols_customer` (
   `id_barang` char(15) NOT NULL,
   `tgl` varchar(225) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tb_rols_customer`
+--
+
+INSERT INTO `tb_rols_customer` (`no`, `id_customer`, `id_jual`, `id_barang`, `tgl`) VALUES
+(29, 'CS001', 'P001', 'K0001', '2020-12-02');
 
 -- --------------------------------------------------------
 
@@ -154,6 +196,13 @@ CREATE TABLE `tb_rols_supplier` (
   `id_barang` char(15) NOT NULL,
   `tgl` varchar(225) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tb_rols_supplier`
+--
+
+INSERT INTO `tb_rols_supplier` (`no`, `id_supplier`, `id_transaksi`, `id_barang`, `tgl`) VALUES
+(32, 'SUP0001', 'T001', 'K0001', '2020-12-02');
 
 -- --------------------------------------------------------
 
@@ -192,6 +241,13 @@ CREATE TABLE `tb_transaksi` (
   `nama_barang` varchar(225) NOT NULL,
   `brg_masuk` int(225) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `tb_transaksi`
+--
+
+INSERT INTO `tb_transaksi` (`id_transaksi`, `tanggal`, `id_barang`, `nama_barang`, `brg_masuk`) VALUES
+('T001', '2020-12-02', 'K0001', 'Guarantee Card ', 20000);
 
 --
 -- Trigger `tb_transaksi`
@@ -234,6 +290,13 @@ CREATE TABLE `tb_transaksi_jual` (
   `nama_barang` varchar(225) NOT NULL,
   `brg_keluar` int(225) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `tb_transaksi_jual`
+--
+
+INSERT INTO `tb_transaksi_jual` (`id_jual`, `tanggal`, `id_barang`, `nama_barang`, `brg_keluar`) VALUES
+('P001', '2020-12-02', 'K0001', 'Guarantee Card ', 10000);
 
 --
 -- Trigger `tb_transaksi_jual`
@@ -280,10 +343,24 @@ ALTER TABLE `barang`
   ADD PRIMARY KEY (`id_barang`);
 
 --
+-- Indeks untuk tabel `tb_akses`
+--
+ALTER TABLE `tb_akses`
+  ADD PRIMARY KEY (`id_akses`);
+
+--
 -- Indeks untuk tabel `tb_customer`
 --
 ALTER TABLE `tb_customer`
   ADD PRIMARY KEY (`id_customer`);
+
+--
+-- Indeks untuk tabel `tb_rols_akses`
+--
+ALTER TABLE `tb_rols_akses`
+  ADD PRIMARY KEY (`id_rols`),
+  ADD KEY `id_admin` (`id_admin`),
+  ADD KEY `id_akses` (`id_akses`);
 
 --
 -- Indeks untuk tabel `tb_rols_customer`
@@ -330,23 +407,42 @@ ALTER TABLE `tb_transaksi_jual`
 -- AUTO_INCREMENT untuk tabel `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id_admin` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_admin` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+
+--
+-- AUTO_INCREMENT untuk tabel `tb_akses`
+--
+ALTER TABLE `tb_akses`
+  MODIFY `id_akses` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT untuk tabel `tb_rols_akses`
+--
+ALTER TABLE `tb_rols_akses`
+  MODIFY `id_rols` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_rols_customer`
 --
 ALTER TABLE `tb_rols_customer`
-  MODIFY `no` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `no` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_rols_supplier`
 --
 ALTER TABLE `tb_rols_supplier`
-  MODIFY `no` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `no` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
+
+--
+-- Ketidakleluasaan untuk tabel `tb_rols_akses`
+--
+ALTER TABLE `tb_rols_akses`
+  ADD CONSTRAINT `tb_rols_akses_ibfk_1` FOREIGN KEY (`id_admin`) REFERENCES `admin` (`id_admin`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tb_rols_akses_ibfk_2` FOREIGN KEY (`id_akses`) REFERENCES `tb_akses` (`id_akses`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `tb_rols_customer`
