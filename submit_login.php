@@ -12,6 +12,8 @@ $result = mysqli_num_rows($sql);
 if ($result > 0) {
 
 	if ($us['id_akses'] == '1') {
+		$_SESSION['nama_akses'] = $us['nama_akses'];
+		$_SESSION['id_admin'] = $us['id_admin'];
 		$_SESSION['id_akses'] = $us['id_akses'];
 		$usr = $us['username'];
 		$_SESSION['username']=$usr;
@@ -23,6 +25,8 @@ if ($result > 0) {
 		</script>";//mengarah ke halaman owner (hak akses penuh)
 
 	}else if($us['id_akses'] == '2'){
+		$_SESSION['nama_akses'] = $us['nama_akses'];
+		$_SESSION['id_admin'] = $us['id_admin'];
 		$_SESSION['id_akses'] = $us['id_akses'];
 		$usr = $us['username'];
 		$_SESSION['username']=$usr;
@@ -34,6 +38,8 @@ if ($result > 0) {
 		</script>";//mengarah ke halaman owner (hak akses admin)
 
 	}else if($us['id_akses'] == '3'){
+		$_SESSION['nama_akses'] = $us['nama_akses'];
+		$_SESSION['id_admin'] = $us['id_admin'];
 		$_SESSION['id_akses'] = $us['id_akses'];
 		$usr = $us['username'];
 		$_SESSION['username']=$usr;

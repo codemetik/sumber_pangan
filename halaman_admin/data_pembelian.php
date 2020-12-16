@@ -32,7 +32,7 @@ include "rupiah.php";
 							<th>Nama Supplier</th>
 							<th>Barang Masuk</th>
 							<th>Total Harga</th>
-							<th>Opsi</th>
+							<!-- <th>Opsi</th> -->
 						</tr>
 						<?php 
 						if (isset($_POST['tampil'])) {
@@ -54,11 +54,11 @@ include "rupiah.php";
 							<td><?= $data['nama_supplier']; ?></td>
 							<td><?php echo $data['brg_masuk']; ?></td>
 							<td><?php echo rupiah($data['total']); ?></td>
-							<td class="pilih">
+							<!-- <td class="pilih">
 							<a href="?page=editPembelian&id=<?= $data['id_transaksi']; ?>" class="btn bg-blue"><i class="fa fa-edit"></i></a>
 							<a href="halaman_admin/barang_masuk/delete_masuk.php?id_transaksi=<?= $data['id_transaksi']; ?>" onclick="return confirm('Apakah anda yakin ingin data ini?')">
 								<button class="btn bg-red"><i class="fa fa-trash-alt"></i></button></a>
-							</td>
+							</td> -->
 						</tr>
 					<?php } ?>
 					</table>

@@ -33,7 +33,7 @@ include "rupiah.php";
 							<th>Nama Customer</th>
 							<th>Barang Keluar</th>
 							<th>Total Harga</th>
-							<th>Opsi</th>
+							<!-- <th>Opsi</th> -->
 						</tr>	
 						</thead>
 						<?php 
@@ -56,11 +56,11 @@ include "rupiah.php";
 							<td><?php echo $data['nama_customer']; ?></td>
 							<td><?php echo $data['brg_keluar']; ?></td>
 							<td><?php echo rupiah($data['total']); ?></td>
-							<td class="pilih">
+							<!-- <td class="pilih">
 							<a href="?page=editPenjualan&id=<?= $data['id_jual']; ?>" class="btn bg-blue"><i class="fa fa-edit"></i></a>
 							<a href="halaman_admin/barang_keluar/delete_keluar.php?id=<?= $data['id_jual']; ?>">
 								<button type='submit' name='hapus' class="btn bg-red"><i class="fa fa-trash-alt"></i></button></a>
-							</td>
+							</td> -->
 						</tr>
 					<?php } ?>
 					</table>

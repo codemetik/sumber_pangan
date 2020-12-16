@@ -9,7 +9,15 @@ include "rupiah.php";
 	<div class="card-body">
 		<div class="row">
 			<div class="col-sm-12 mb-2">
-				<a href="?page=inputDataBaruPenjualan" class="btn bg-primary">Tambah Penjualan</a>
+				<?php 
+				$sqlcel = mysqli_query($koneksi, "SELECT * FROM admin X INNER JOIN tb_rols_akses Y ON y.id_admin = x.id_admin INNER JOIN tb_akses z ON z.id_akses = y.id_akses WHERE x.id_admin = '".$_SESSION['id_admin']."'");
+				$cekuser = mysqli_fetch_array($sqlcel);
+				if ($cekuser['id_akses'] == '3') { ?>
+					
+				<?php }else{ ?>
+					<a href="?page=inputDataBaruPenjualan" class="btn bg-primary">Tambah Penjualan</a>	
+				<?php }
+				?>
 				<form action="" method="POST">
 				  <div class="input-group input-group-sm float-right" style="width: 250px;">
 				    <input type="text" name="search" class="form-control float-right" placeholder="Search Barang">

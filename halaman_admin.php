@@ -36,6 +36,9 @@ if (!isset($_SESSION['username'])) {
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" >Anda Login Sebagai : <b><i><?= $_SESSION['nama_akses']; ?></i></b></a>
+      </li>
     </ul>
 
     <!-- SEARCH FORM -->
