@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 08 Des 2020 pada 11.45
+-- Waktu pembuatan: 21 Jan 2021 pada 15.53
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.4.9
 
@@ -29,8 +29,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `admin` (
   `id_admin` int(20) NOT NULL,
-  `nama` varchar(225) NOT NULL,
-  `username` varchar(225) NOT NULL,
+  `nama` varchar(35) NOT NULL,
+  `username` varchar(35) NOT NULL,
   `password` varchar(225) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -53,8 +53,8 @@ INSERT INTO `admin` (`id_admin`, `nama`, `username`, `password`) VALUES
 
 CREATE TABLE `barang` (
   `id_barang` char(20) NOT NULL,
-  `nama` varchar(225) NOT NULL,
-  `stok` int(225) NOT NULL,
+  `nama` varchar(35) NOT NULL,
+  `stok` int(10) NOT NULL,
   `harga` int(20) NOT NULL,
   `harga_jual` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -67,7 +67,7 @@ INSERT INTO `barang` (`id_barang`, `nama`, `stok`, `harga`, `harga_jual`) VALUES
 ('K0001', 'Guarantee Card ', 12000, 185, 265),
 ('K0002', 'Stiker Gajah B (Miyako)', 1000, 150, 193),
 ('K0003', 'Stiker Yamaha', 5000, 75, 427),
-('K0004', 'Stiker Installation Advice Solenoid Interlock', 50, 6615, 8000),
+('K0004', 'Stiker Installation Advice Solenoid', 50, 6615, 8000),
 ('K0005', 'Emblem \"S\"', 9000, 1100, 1400),
 ('K0006', 'Label Denso', 52002, 65, 95),
 ('K0007', 'rokok', 0, 11000, 12000);
@@ -111,9 +111,9 @@ CREATE TABLE `tb_akses` (
 --
 
 INSERT INTO `tb_akses` (`id_akses`, `nama_akses`) VALUES
-(1, 'Owner'),
+(1, 'Super Admin'),
 (2, 'Admin'),
-(3, 'SPV PPIC');
+(3, 'SPV');
 
 -- --------------------------------------------------------
 
@@ -123,9 +123,9 @@ INSERT INTO `tb_akses` (`id_akses`, `nama_akses`) VALUES
 
 CREATE TABLE `tb_customer` (
   `id_customer` char(15) NOT NULL,
-  `nama_customer` varchar(50) NOT NULL,
+  `nama_customer` varchar(35) NOT NULL,
   `no_telp` varchar(15) NOT NULL,
-  `alamat` varchar(225) NOT NULL
+  `alamat` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -181,7 +181,9 @@ CREATE TABLE `tb_rols_customer` (
 --
 
 INSERT INTO `tb_rols_customer` (`no`, `id_customer`, `id_jual`, `id_barang`, `tgl`) VALUES
-(29, 'CS001', 'P001', 'K0001', '2020-12-02');
+(29, 'CS001', 'P001', 'K0001', '2020-12-02'),
+(33, 'CS001', 'P002', 'K0007', '2021-01-21'),
+(35, 'CS001', 'P003', 'K0007', '2021-01-21');
 
 -- --------------------------------------------------------
 
@@ -202,7 +204,8 @@ CREATE TABLE `tb_rols_supplier` (
 --
 
 INSERT INTO `tb_rols_supplier` (`no`, `id_supplier`, `id_transaksi`, `id_barang`, `tgl`) VALUES
-(32, 'SUP0001', 'T001', 'K0001', '2020-12-02');
+(32, 'SUP0001', 'T001', 'K0001', '2020-12-02'),
+(36, 'SUP0005', 'T002', 'K0007', '2021-01-21');
 
 -- --------------------------------------------------------
 
@@ -212,9 +215,9 @@ INSERT INTO `tb_rols_supplier` (`no`, `id_supplier`, `id_transaksi`, `id_barang`
 
 CREATE TABLE `tb_supplier` (
   `id_supplier` char(15) NOT NULL,
-  `nama_supplier` varchar(50) NOT NULL,
+  `nama_supplier` varchar(35) NOT NULL,
   `no_telp` varchar(15) NOT NULL,
-  `alamat` varchar(225) NOT NULL
+  `alamat` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -247,7 +250,8 @@ CREATE TABLE `tb_transaksi` (
 --
 
 INSERT INTO `tb_transaksi` (`id_transaksi`, `tanggal`, `id_barang`, `nama_barang`, `brg_masuk`) VALUES
-('T001', '2020-12-02', 'K0001', 'Guarantee Card ', 20000);
+('T001', '2020-12-02', 'K0001', 'Guarantee Card ', 20000),
+('T002', '2021-01-21', 'K0007', 'rokok', 1000);
 
 --
 -- Trigger `tb_transaksi`
@@ -296,7 +300,9 @@ CREATE TABLE `tb_transaksi_jual` (
 --
 
 INSERT INTO `tb_transaksi_jual` (`id_jual`, `tanggal`, `id_barang`, `nama_barang`, `brg_keluar`) VALUES
-('P001', '2020-12-02', 'K0001', 'Guarantee Card ', 10000);
+('P001', '2020-12-02', 'K0001', 'Guarantee Card ', 10000),
+('P002', '2021-01-21', 'K0007', 'rokok', 500),
+('P003', '2021-01-21', 'K0007', 'rokok', 500);
 
 --
 -- Trigger `tb_transaksi_jual`
@@ -425,13 +431,13 @@ ALTER TABLE `tb_rols_akses`
 -- AUTO_INCREMENT untuk tabel `tb_rols_customer`
 --
 ALTER TABLE `tb_rols_customer`
-  MODIFY `no` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `no` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_rols_supplier`
 --
 ALTER TABLE `tb_rols_supplier`
-  MODIFY `no` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `no` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

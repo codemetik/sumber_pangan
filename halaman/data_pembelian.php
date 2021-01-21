@@ -64,7 +64,7 @@ include "rupiah.php";
 							<td><?php echo rupiah($data['total']); ?></td>
 							<td class="pilih">
 							<a href="?page=editPembelian&id=<?= $data['id_transaksi']; ?>" class="btn bg-blue"><i class="fa fa-edit"></i></a>
-							<a href="halaman/barang_masuk/delete_masuk.php?id_transaksi=<?= $data['id_transaksi']; ?>" onclick="return confirm('Apakah anda yakin ingin data ini?')">
+							<a href="halaman/barang_masuk/delete_masuk.php?id_transaksi=<?= $data['id_transaksi']; ?>" onclick="return confirm('Apakah anda yakin ingin menghapus ini?')">
 								<button class="btn bg-red"><i class="fa fa-trash-alt"></i></button></a>
 							</td>
 						</tr>

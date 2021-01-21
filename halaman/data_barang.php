@@ -49,7 +49,7 @@ include "rupiah.php";
 						<?php 
 						if (isset($_POST['tampil'])) {
 							$search = $_POST['search'];
-							$query = mysqli_query($koneksi, "SELECT id_barang, nama , stok, harga, harga_jual, harga*stok AS sub_harga, (harga+harga_jual)*stok AS sub_hargajual FROM barang WHERE id_barang LIKE '%".$search."%' OR nama LIKE '%".$search."%' OR jenis LIKE '%".$search."%'") or die(mysqli_error());
+							$query = mysqli_query($koneksi, "SELECT id_barang, nama , stok, harga, harga_jual, harga*stok AS sub_harga, (harga+harga_jual)*stok AS sub_hargajual FROM barang WHERE id_barang LIKE '%".$search."%' OR nama LIKE '%".$search."%'") or die(mysqli_error());
 						}else{
 							$query = mysqli_query($koneksi, "SELECT id_barang, nama , stok, harga, harga_jual, harga*stok AS sub_harga, (harga+harga_jual)*stok AS sub_hargajual FROM barang") or die(mysqli_error());
 						}

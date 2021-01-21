@@ -14,7 +14,7 @@ $id_customer = $_POST['id_customer'];
 
 $cek = mysqli_query($koneksi, "SELECT * FROM barang WHERE id_barang = '".$id_brg."'");
 $cekstok = mysqli_fetch_array($cek);
-if ($cekstok['stok'] > $msk) {
+if ($cekstok['stok'] >= $msk) {
 	
 	$query = "INSERT INTO tb_transaksi_jual(id_jual, tanggal, id_barang, nama_barang, brg_keluar) VALUES('$id','$tgl','$id_brg','$nm','$msk')";
 	$sql = mysqli_query($koneksi, $query);
